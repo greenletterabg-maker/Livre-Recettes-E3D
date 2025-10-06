@@ -1,369 +1,387 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courge Little Jack farcie au risotto par Reda, 3PMT</title>
+    <!-- Le CDN Tailwind est parfait pour GitHub Pages -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Le CDN Chart.js est parfait pour GitHub Pages -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Les polices Google Fonts fonctionnent sans problème sur GitHub Pages -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .tab-button { transition: all 0.2s; }
+        /* Style pour l'onglet actif */
+        .active-tab { border-bottom: 3px solid #F97316; font-weight: 700; color: #F97316; }
+        /* Conteneur pour le graphique pour maintenir l'aspect ratio */
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        /* Effet de raturage pour les étapes de préparation cochées */
+        .step-checkbox:checked + .step-text { text-decoration: line-through; color: #9CA3AF; }
+        .step-text { transition: color 0.3s, text-decoration 0.3s; }
+        .step-checkbox { transform: scale(1.2); }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="fr"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Courge Little Jack farcie au risotto par Reda, 3PMT&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tab-button { transition: all 0.2s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.active-tab { border-bottom: 3px solid #F97316; font-weight: 700; color: #F97316; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-checkbox:checked + .step-text { text-decoration: line-through; color: #9CA3AF; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-text { transition: color 0.3s, text-decoration 0.3s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-checkbox { transform: scale(1.2); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="p-4 bg-gray-50"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- HEADER / TITRE (Ajusté pour la symétrie et l'impact visuel) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-10 pb-6 border-b-4 border-orange-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-5xl md:text-6xl mr-2"&gt;🎃&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>COURGE LITTLE JACK FARCIE AU RISOTTO</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-5xl md:text-6xl ml-2"&gt;🎃&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic"&gt;par Reda Chibah, 3PMT&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- DESCRIPTION ET BOÎTE D'INFO --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="mb-8 flex flex-col md:flex-row gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:w-1/2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center"&gt;Recette d'Automne 🍂&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-600 leading-relaxed"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Cette recette met en valeur la courge Little Jack, une petite citrouille parfaite pour une portion individuelle. Le risotto est crémeux grâce au **Camembert** et à l'**huile d'olive**, offrant une alternative gourmande au beurre et au parmesan.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- INDICATEUR DE DIFFICULTÉ --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-2"&gt;🧑‍🍳&lt;/span&gt; Niveau de Difficulté</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- CODE VISUEL (Ronds Pleins/Vides) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="difficulty-indicator" class="flex items-center gap-2 mt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Les ronds seront insérés ici par JavaScript --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- CARTE DES TEMPS (Visuels Améliorés) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="recipe-times" class="md:w-1/2 p-4 bg-orange-50 rounded-lg shadow-inner border border-orange-200"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold text-orange-700 mb-3 text-center"&gt;⏱ Temps Total&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-3 gap-3 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-600 mb-1"&gt;⏳&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-2xl font-bold text-orange-600" id="prep-time-display"&gt;25 min&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500"&gt;Préparation&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-600 mb-1"&gt;🔥&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-2xl font-bold text-orange-600" id="cook-time-display"&gt;35 min&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500"&gt;Cuisson&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-700 mb-1"&gt;⏱&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-2xl font-bold text-orange-700" id="total-time-display"&gt;60 min&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500"&gt;Total&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- SÉLECTEUR DE PORTIONS ET GRAPHIQUE --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="mb-10 p-6 bg-gray-50 rounded-xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-stone-700 mb-4"&gt;Portions &amp; Visualisation&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-col md:flex-row items-center justify-between gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- SÉLECTEUR DE PORTIONS (Visuel Amélioré) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:w-1/2 w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-3xl mr-2"&gt;👥&lt;/span&gt; Choisir le nombre de portions :</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-500 mt-2"&gt;Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- GRAPHIQUE DES TEMPS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:w-1/2 w-full chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="timeChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- SECTION PRINCIPALE (ONGLETS) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BARRE D'ONGLETS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex border-b border-gray-200 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="tab-ingredients" class="tab-button py-3 px-6 text-lg text-gray-500 active-tab"&gt;Ingrédients&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="tab-preparation" class="tab-button py-3 px-6 text-lg text-gray-500"&gt;Préparation&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- CONTENU DES ONGLETS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="content-ingredients" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul id="ingredients-list" class="space-y-4"&gt;&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="content-preparation" class="tab-content hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ol id="preparation-list" class="space-y-4"&gt;&lt;/ol&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const portionsInput = document.getElementById('portions');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ingredientsList = document.getElementById('ingredients-list');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const preparationList = document.getElementById('preparation-list');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const prepTimeDisplay = document.getElementById('prep-time-display');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const cookTimeDisplay = document.getElementById('cook-time-display');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const totalTimeDisplay = document.getElementById('total-time-display');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let timeChart = null;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- DONNÉES DE LA RECETTE ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const BASE_PORTIONS = 4;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const BASE_PREP_TIME = 25; // min</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const BASE_COOK_TIME = 35; // min</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const DIFFICULTY_LEVEL = 2; // Niveau 2 sur 5 (Facile/Abordable)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const recipeData = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ingredients: [</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Légumes et Fruits", name: "Courges Little Jack (environ 350g ch.)", baseAmount: 4, unit: "unités" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Légumes et Fruits", name: "Oignon jaune haché finement (ou échalote pour les petites portions)", baseAmount: 1, unit: "petit" }, // MODIFIÉ</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Légumes et Fruits", name: "Gousses d'ail hachées", baseAmount: 2, unit: "unités" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Riz", name: "Riz Arborio ou Carnaroli", baseAmount: 300, unit: "g" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Liquides", name: "Bouillon de légumes chaud", baseAmount: 1.2, unit: "L" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Gras et Fromage", name: "Huile d'olive (pour cuisson et crémage)", baseAmount: 3, unit: "cs" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Gras et Fromage", name: "Camembert coupé en morceaux", baseAmount: 125, unit: "g" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Assaisonnement", name: "Vinaigre de cidre ou jus de citron (pour déglaçage)", baseAmount: 15, unit: "ml" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Assaisonnement", name: "Noix de muscade fraîchement râpée", baseAmount: 0.5, unit: "cc" },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Assaisonnement", name: "Sel et poivre noir", baseAmount: 1, unit: "selon goût" }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>],</p>
-<p class="p1"><span class="Apple-converted-space">            </span>preparation: [</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ step: 1, category: "Courge", text: "&lt;b&gt;Préparer les courges :&lt;/b&gt; Préchauffez le four à 180°C. Coupez le chapeau de chaque courge Little Jack. Évidez-les de leurs graines. Salez et poivrez l'intérieur. Enfournez les courges (avec les chapeaux à côté) pendant 30 minutes. Elles doivent être tendres mais tenir leur forme." },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ step: 2, category: "Risotto", text: "&lt;b&gt;Sauter l'oignon :&lt;/b&gt; Dans une casserole, ajoutez 1 cs d'huile d'olive. Ajoutez l'oignon haché et faites-le suer 5 à 7 minutes. Ajoutez l'ail. Ajoutez le riz et faites-le nacrer pendant 1 minute jusqu'à ce qu'il devienne translucide sur les bords." },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ step: 3, category: "Risotto", text: "&lt;b&gt;Cuisson :&lt;/b&gt; &lt;em&gt;(Alternative au vin)&lt;/em&gt; Ajoutez le vinaigre de cidre ou le jus de citron au riz et laissez s'évaporer. Ajoutez ensuite une louche de bouillon chaud. Remuez jusqu'à absorption. Continuez d'ajouter le bouillon louche après louche pendant environ 15 à 18 minutes, jusqu'à ce que le riz soit 'al dente'." },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{ step: 4, category: "Finition", text: "&lt;b&gt;Crémer et Farcissage :&lt;/b&gt; Hors du feu, ajoutez 1 cs d'huile d'olive et le Camembert coupé en morceaux. Mélangez vigoureusement jusqu'à obtenir un risotto crémeux. Ajoutez la noix de muscade, sel et poivre. Farcissez généreusement chaque courge avec le risotto. Replacez le chapeau sur la courge et servez immédiatement." }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>]</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function formatAmount(amount, unit) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Affichage pour les unités de masse/volume standards</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (unit === "L" || unit === "ml" || unit === "g" || unit === "cc" || unit === "cs") {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// toFixed(1) assure 0.1, replace('.0', '') enlève le '.0' pour 1.0, 2.0, etc.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return amount.toFixed(1).replace('.0', '') + ' ' + unit;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gestion des unités non standards ou objets entiers (comme l'oignon)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (amount &gt; 0 &amp;&amp; amount &lt; 1) {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>// Gestion des fractions courantes pour les unités non-standard comme "petit"</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>if (amount &gt;= 0.25 &amp;&amp; amount &lt; 0.3) return '1/4 ' + unit; // Pour 0.25</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>if (amount &gt;= 0.45 &amp;&amp; amount &lt; 0.55) return '1/2 ' + unit; // Pour 0.5</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>// Si c'est un autre petit décimal, affichage plus précis</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>if (amount &gt; 0.1) return amount.toFixed(1) + ' ' + unit;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gestion des unités complètes (unités, petits)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (unit === "unités" &amp;&amp; amount % 1 !== 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return amount.toFixed(1) + ' ' + unit;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Retour à l'arrondi au nombre entier pour 1 ou plus, sauf si spécifié autrement</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return amount.toFixed(0) + ' ' + unit;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderIngredients(factor) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ingredientsList.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentCategory = "";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>recipeData.ingredients.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (item.category !== currentCategory) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentCategory = item.category;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const header = document.createElement('h3');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>header.className = 'text-lg font-bold text-stone-700 mt-4 mb-2 border-b border-orange-100 pb-1';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>header.textContent = item.category;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>ingredientsList.appendChild(header);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const scaledAmount = item.baseAmount * factor;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const listItem = document.createElement('li');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>listItem.className = 'flex justify-between items-center p-3 bg-white rounded-lg border border-gray-100 shadow-sm';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const amountText = (item.unit === "selon goût")<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>? item.unit<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>: formatAmount(scaledAmount, item.unit);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>listItem.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-gray-700"&gt;${item.name}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-semibold text-orange-600"&gt;${amountText}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ingredientsList.appendChild(listItem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderPreparation() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>preparationList.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>recipeData.preparation.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const listItem = document.createElement('li');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>listItem.className = 'flex items-start p-4 bg-white rounded-xl shadow-md border border-gray-100';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>listItem.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" class="step-checkbox mt-1.5 mr-4 accent-orange-500 min-w-4 min-h-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-text flex-grow"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold text-orange-600 mr-2"&gt;${item.step}.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-gray-700"&gt;${item.text}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preparationList.appendChild(listItem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function updateTimes(factor) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newPortions = parseInt(portionsInput.value, 10);</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// La formule reste la même pour les temps</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newPrepTime = Math.round(BASE_PREP_TIME * Math.pow(newPortions / BASE_PORTIONS, 0.1));<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newCookTime = BASE_COOK_TIME;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newTotalTime = newPrepTime + newCookTime;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>prepTimeDisplay.textContent = `${newPrepTime} min`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cookTimeDisplay.textContent = `${newCookTime} min`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalTimeDisplay.textContent = `${newTotalTime} min`;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>updateTimeChart(newPrepTime, newCookTime);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function initTimeChart(prep, cook) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('timeChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>timeChart = new Chart(ctx, {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>type: 'doughnut',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>labels: ['Préparation', 'Cuisson'],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data: [prep, cook],</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: ['#FDBA74', '#EA580C'], // Orange clair et foncé</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>hoverOffset: 4</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>legend: { position: 'top' },</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: { callbacks: { label: (context) =&gt; `${context.label}: ${context.raw} min` } }</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function updateTimeChart(prep, cook) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (timeChart) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>timeChart.data.datasets[0].data = [prep, cook];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>timeChart.update();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Rendu de l'indicateur de difficulté (utilise DIFFICULTY_LEVEL = 2)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderDifficulty() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const indicator = document.getElementById('difficulty-indicator');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const maxLevel = 5;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>indicator.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 1; i &lt;= maxLevel; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const icon = document.createElement('span');</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const isFilled = i &lt;= DIFFICULTY_LEVEL;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Utilisation de cercles (ronds pleins/ronds vides)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>icon.className = `h-4 w-4 rounded-full transition-all duration-300 transform scale-100 block`; // 'block' pour gérer le h et w</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (isFilled) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Cercle plein</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>icon.classList.add('bg-orange-500', 'shadow-md');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Cercle vide (bordure)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>icon.classList.add('border-2', 'border-orange-500');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>indicator.appendChild(icon);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- GESTION DES ÉVÉNEMENTS ---</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function handlePortionChange() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newPortions = parseInt(portionsInput.value, 10);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const factor = newPortions / BASE_PORTIONS;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (newPortions &gt; 0 &amp;&amp; newPortions &lt;= 12) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>renderIngredients(factor);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateTimes(newPortions);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function handleTabClick(event) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Get all tab buttons and content panels</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const tabs = document.querySelectorAll('.tab-button');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const contents = document.querySelectorAll('.tab-content');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Deactivate all tabs and hide all content</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tabs.forEach(tab =&gt; tab.classList.remove('active-tab'));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>contents.forEach(content =&gt; content.classList.add('hidden'));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Activate the clicked tab and show the corresponding content</p>
-<p class="p1"><span class="Apple-converted-space">            </span>event.target.classList.add('active-tab');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const targetId = event.target.id.replace('tab-', 'content-');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(targetId).classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- INITIALISATION ---</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 1. Initialiser le graphique des temps</p>
-<p class="p1"><span class="Apple-converted-space">            </span>initTimeChart(BASE_PREP_TIME, BASE_COOK_TIME);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 2. Rendre les onglets initiaux</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderIngredients(1); // Rendu initial pour 4 portions</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderPreparation();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>updateTimes(BASE_PORTIONS); // Mise à jour des temps initiaux</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 3. Rendre l'indicateur de difficulté</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderDifficulty();<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 4. Ajouter les écouteurs d'événements</p>
-<p class="p1"><span class="Apple-converted-space">            </span>portionsInput.addEventListener('input', handlePortionChange);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Get all tab buttons and attach handler</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-button').forEach(button =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', handleTabClick);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="p-4 bg-gray-50">
+
+    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
+        
+        <!-- HEADER / TITRE -->
+        <header class="text-center mb-10 pb-6 border-b-4 border-orange-100">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug">
+                <span class="text-5xl md:text-6xl mr-2">🎃</span>
+                COURGE LITTLE JACK FARCIE AU RISOTTO
+                <span class="text-5xl md:text-6xl ml-2">🎃</span>
+            </h1>
+            <div class="text-center">
+                <p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic">par Reda Chibah, 3PMT</p>
+            </div>
+        </header>
+
+        <!-- DESCRIPTION ET BOÎTE D'INFO -->
+        <section class="mb-8 flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/2">
+                <h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center">Recette d'Automne 🍂</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Cette recette met en valeur la courge Little Jack, une petite citrouille parfaite pour une portion individuelle. Le risotto est crémeux grâce au <strong>Camembert</strong> et à l'<strong>huile d'olive</strong>, offrant une alternative gourmande au beurre et au parmesan.
+                </p>
+                
+                <!-- INDICATEUR DE DIFFICULTÉ -->
+                <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">
+                        <span class="mr-2">🧑‍🍳</span> Niveau de Difficulté
+                    </h3>
+                    <div id="difficulty-indicator" class="flex items-center gap-2 mt-2">
+                        <!-- Les ronds seront insérés ici par JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CARTE DES TEMPS -->
+            <div id="recipe-times" class="md:w-1/2 p-4 bg-orange-50 rounded-lg shadow-inner border border-orange-200">
+                <h3 class="text-xl font-bold text-orange-700 mb-3 text-center">⏱ Temps Total</h3>
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div>
+                        <p class="text-3xl text-orange-600 mb-1">⏳</p>
+                        <p class="text-2xl font-bold text-orange-600" id="prep-time-display">25 min</p>
+                        <p class="text-sm text-gray-500">Préparation</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl text-orange-600 mb-1">🔥</p>
+                        <p class="text-2xl font-bold text-orange-600" id="cook-time-display">35 min</p>
+                        <p class="text-sm text-gray-500">Cuisson</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl text-orange-700 mb-1">⏱</p>
+                        <p class="text-2xl font-bold text-orange-700" id="total-time-display">60 min</p>
+                        <p class="text-sm text-gray-500">Total</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SÉLECTEUR DE PORTIONS ET GRAPHIQUE -->
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl">
+            <h2 class="text-2xl font-bold text-stone-700 mb-4">Portions & Visualisation</h2>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- SÉLECTEUR DE PORTIONS -->
+                <div class="md:w-1/2 w-full">
+                    <label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center">
+                        <span class="text-3xl mr-2">👥</span> Choisir le nombre de portions :
+                    </label>
+                    <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md">
+                    <p class="text-sm text-gray-500 mt-2">Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.</p>
+                </div>
+
+                <!-- GRAPHIQUE DES TEMPS -->
+                <div class="md:w-1/2 w-full chart-container">
+                    <canvas id="timeChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PRINCIPALE (ONGLETS) -->
+        <section>
+            <!-- BARRE D'ONGLETS -->
+            <div class="flex border-b border-gray-200 mb-6">
+                <button id="tab-ingredients" class="tab-button py-3 px-6 text-lg text-gray-500 active-tab">Ingrédients</button>
+                <button id="tab-preparation" class="tab-button py-3 px-6 text-lg text-gray-500">Préparation</button>
+            </div>
+
+            <!-- CONTENU DES ONGLETS -->
+            <div id="content-ingredients" class="tab-content">
+                <ul id="ingredients-list" class="space-y-4">
+                    <!-- Les ingrédients seront générés ici par JavaScript -->
+                </ul>
+            </div>
+
+            <div id="content-preparation" class="tab-content hidden">
+                <ol id="preparation-list" class="space-y-4">
+                     <!-- Les étapes seront générées ici par JavaScript -->
+                </ol>
+            </div>
+        </section>
+        
+        <!-- LIEN RETOUR À L'ACCUEIL -->
+        <div class="mt-10 text-center border-t pt-6 border-gray-200">
+            <a href="./" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150">
+                ← Retour à la liste des recettes
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const portionsInput = document.getElementById('portions');
+        const ingredientsList = document.getElementById('ingredients-list');
+        const preparationList = document.getElementById('preparation-list');
+        const prepTimeDisplay = document.getElementById('prep-time-display');
+        const cookTimeDisplay = document.getElementById('cook-time-display');
+        const totalTimeDisplay = document.getElementById('total-time-display');
+        const difficultyIndicator = document.getElementById('difficulty-indicator');
+
+        let timeChart = null;
+
+        // --- DONNÉES DE LA RECETTE ---
+        const BASE_PORTIONS = 4;
+        const BASE_PREP_TIME = 25; // min
+        const BASE_COOK_TIME = 35; // min (temps de cuisson du risotto et de la courge)
+        const DIFFICULTY_LEVEL = 2; // Niveau 2 sur 5 (Facile/Abordable)
+
+        const recipeData = {
+            ingredients: [
+                { category: "Légumes et Fruits", name: "Courges Little Jack (environ 350g ch.)", baseAmount: 4, unit: "unités", icon: "🎃" },
+                { category: "Légumes et Fruits", name: "Oignon jaune haché finement (ou échalote)", baseAmount: 1, unit: "petit", icon: "🧅" }, 
+                { category: "Légumes et Fruits", name: "Gousses d'ail hachées", baseAmount: 2, unit: "unités", icon: "🧄" },
+                { category: "Riz", name: "Riz Arborio ou Carnaroli", baseAmount: 300, unit: "g", icon: "🍚" },
+                { category: "Liquides", name: "Bouillon de légumes chaud", baseAmount: 1.2, unit: "L", icon: "🍲" },
+                { category: "Gras et Fromage", name: "Huile d'olive extra vierge", baseAmount: 3, unit: "cs", icon: "🫒" },
+                { category: "Gras et Fromage", name: "Camembert coupé en morceaux", baseAmount: 125, unit: "g", icon: "🧀" },
+                { category: "Assaisonnement", name: "Vinaigre de cidre ou jus de citron (pour déglaçage)", baseAmount: 15, unit: "ml", icon: "🍋" },
+                { category: "Assaisonnement", name: "Noix de muscade fraîchement râpée", baseAmount: 0.5, unit: "cc", icon: "🌰" },
+                { category: "Assaisonnement", name: "Sel et poivre noir", baseAmount: 1, unit: "selon goût", icon: "🧂" }
+            ],
+            preparation: [
+                { step: 1, category: "Courge", text: "<b>Préparer les courges :</b> Préchauffez le four à 180°C. Coupez le chapeau de chaque courge Little Jack. Évidez-les de leurs graines. Salez et poivrez l'intérieur. Enfournez les courges (avec les chapeaux à côté) pendant 30 minutes. Elles doivent être tendres mais tenir leur forme." },
+                { step: 2, category: "Risotto", text: "<b>Sauter l'oignon :</b> Dans une casserole, ajoutez 1 cs d'huile d'olive. Ajoutez l'oignon haché et faites-le suer 5 à 7 minutes. Ajoutez l'ail. Ajoutez le riz et faites-le nacrer pendant 1 minute jusqu'à ce qu'il devienne translucide sur les bords." },
+                { step: 3, category: "Risotto", text: "<b>Cuisson :</b> <em>(Alternative au vin)</em> Ajoutez le vinaigre de cidre ou le jus de citron au riz et laissez s'évaporer. Ajoutez ensuite une louche de bouillon chaud. Remuez jusqu'à absorption. Continuez d'ajouter le bouillon louche après louche pendant environ 15 à 18 minutes, jusqu'à ce que le riz soit 'al dente'." },
+                { step: 4, category: "Finition", text: "<b>Crémer et Farcissage :</b> Hors du feu, ajoutez 1 cs d'huile d'olive et le Camembert coupé en morceaux. Mélangez vigoureusement jusqu'à obtenir un risotto crémeux. Ajoutez la noix de muscade, sel et poivre. Farcissez généreusement chaque courge avec le risotto. Replacez le chapeau sur la courge et servez immédiatement." }
+            ]
+        };
+
+        // --- FONCTIONS UTILITAIRES ---
+
+        /**
+         * Formate la quantité pour un affichage lisible.
+         * @param {number} amount - La quantité mise à l'échelle.
+         * @param {string} unit - L'unité de mesure.
+         * @returns {string} La quantité formatée.
+         */
+        function formatAmount(amount, unit) {
+            if (unit === "selon goût") {
+                return unit;
+            }
+
+            // Pour les grandes quantités (g, ml, L), utilisation d'une décimale si nécessaire
+            if (unit === "g" || unit === "ml" || unit === "L") {
+                const scaled = amount.toFixed(1);
+                // Si c'est un nombre entier, ne pas afficher .0
+                if (scaled.endsWith('.0')) {
+                    return Math.round(amount) + ' ' + unit;
+                }
+                return scaled + ' ' + unit;
+            }
+
+            // Pour les unités discrètes (unités, cs, cc, petit), gestion des arrondis et fractions
+            if (amount < 1) {
+                if (amount >= 0.9) return '1 ' + unit; // Arrondir vers 1
+                if (amount >= 0.4 && amount < 0.6) return '1/2 ' + unit; // 0.5
+                if (amount >= 0.2 && amount < 0.3) return '1/4 ' + unit; // 0.25
+                return amount.toFixed(1) + ' ' + unit;
+            }
+
+            return Math.round(amount) + ' ' + unit;
+        }
+
+
+        // --- RENDU D'INGRÉDIENTS ---
+
+        function renderIngredients(currentPortions) {
+            ingredientsList.innerHTML = ''; // Vider la liste
+            
+            // Créer une structure pour grouper par catégorie
+            const groupedIngredients = recipeData.ingredients.reduce((acc, item) => {
+                if (!acc[item.category]) {
+                    acc[item.category] = [];
+                }
+                acc[item.category].push(item);
+                return acc;
+            }, {});
+
+            for (const category in groupedIngredients) {
+                // Créer le titre de la catégorie
+                const categoryHeader = document.createElement('li');
+                categoryHeader.className = 'py-2 mt-4 text-xl font-bold text-stone-700 border-b border-orange-300';
+                categoryHeader.textContent = category;
+                ingredientsList.appendChild(categoryHeader);
+
+                // Ajouter les ingrédients de la catégorie
+                groupedIngredients[category].forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'flex justify-between items-center p-3 bg-white rounded-lg border-l-4 border-orange-500 shadow-sm transition hover:bg-orange-50';
+                    
+                    const newAmount = (item.baseAmount / BASE_PORTIONS) * currentPortions;
+                    const formattedAmount = formatAmount(newAmount, item.unit);
+
+                    listItem.innerHTML = `
+                        <div class="flex items-center">
+                            <span class="text-xl mr-3">${item.icon}</span>
+                            <span class="font-medium text-gray-700">${item.name}</span>
+                        </div>
+                        <span class="text-lg font-semibold text-orange-600">${formattedAmount}</span>
+                    `;
+                    ingredientsList.appendChild(listItem);
+                });
+            }
+        }
+
+
+        // --- RENDU DE LA PRÉPARATION ---
+
+        function renderPreparation() {
+            preparationList.innerHTML = '';
+            recipeData.preparation.forEach(step => {
+                const listItem = document.createElement('li');
+                listItem.className = 'flex items-start p-4 bg-white rounded-lg shadow-md border-t-4 border-green-500';
+                
+                listItem.innerHTML = `
+                    <input type="checkbox" id="step-${step.step}" class="step-checkbox mt-1 mr-4 accent-green-600">
+                    <label for="step-${step.step}" class="step-text text-gray-700 leading-relaxed flex-grow">
+                        <span class="text-lg font-bold text-green-700 block mb-1">Étape ${step.step} :</span>
+                        ${step.text}
+                    </label>
+                `;
+                preparationList.appendChild(listItem);
+            });
+        }
+
+        // --- GRAPHIQUE DES TEMPS ---
+
+        function updateTimeChart(prepTime, cookTime) {
+            const ctx = document.getElementById('timeChart').getContext('2d');
+
+            const data = {
+                labels: [`Préparation (${prepTime} min)`, `Cuisson (${cookTime} min)`],
+                datasets: [{
+                    data: [prepTime, cookTime],
+                    backgroundColor: ['#F97316', '#10B981'], // Orange pour la prépa, Vert pour la cuisson
+                    hoverOffset: 10
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14, family: 'Inter' }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Répartition du Temps',
+                            font: { size: 18, weight: 'bold', family: 'Inter' }
+                        }
+                    }
+                }
+            };
+
+            if (timeChart) {
+                timeChart.data = data;
+                timeChart.update();
+            } else {
+                timeChart = new Chart(ctx, config);
+            }
+        }
+
+        // --- GESTION DU NIVEAU DE DIFFICULTÉ ---
+
+        function renderDifficulty() {
+            difficultyIndicator.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const circle = document.createElement('span');
+                circle.className = `w-4 h-4 rounded-full ${i <= DIFFICULTY_LEVEL ? 'bg-yellow-500' : 'bg-gray-300'}`;
+                difficultyIndicator.appendChild(circle);
+            }
+            // Ajouter le texte
+            const text = document.createElement('span');
+            text.textContent = DIFFICULTY_LEVEL <= 2 ? 'Facile' : DIFFICULTY_LEVEL <= 4 ? 'Moyen' : 'Difficile';
+            text.className = 'font-semibold text-yellow-800 ml-2';
+            difficultyIndicator.appendChild(text);
+        }
+
+        // --- GESTION DES ONGLETS ---
+
+        function setupTabs() {
+            const tabs = [
+                { buttonId: 'tab-ingredients', contentId: 'content-ingredients' },
+                { buttonId: 'tab-preparation', contentId: 'content-preparation' }
+            ];
+
+            tabs.forEach(tab => {
+                document.getElementById(tab.buttonId).addEventListener('click', () => {
+                    // Désactiver tous les onglets
+                    tabs.forEach(t => {
+                        document.getElementById(t.buttonId).classList.remove('active-tab');
+                        document.getElementById(t.contentId).classList.add('hidden');
+                    });
+                    // Activer l'onglet cliqué
+                    document.getElementById(tab.buttonId).classList.add('active-tab');
+                    document.getElementById(tab.contentId).classList.remove('hidden');
+                });
+            });
+        }
+
+
+        // --- MISE À JOUR GLOBALE ---
+
+        function updateRecipeDisplay() {
+            const currentPortions = parseInt(portionsInput.value) || BASE_PORTIONS;
+
+            // 1. Mise à jour des ingrédients
+            renderIngredients(currentPortions);
+
+            // 2. Mise à jour des temps (ne change pas en fonction des portions)
+            prepTimeDisplay.textContent = BASE_PREP_TIME + ' min';
+            cookTimeDisplay.textContent = BASE_COOK_TIME + ' min';
+            totalTimeDisplay.textContent = (BASE_PREP_TIME + BASE_COOK_TIME) + ' min';
+
+            // 3. Mise à jour du graphique
+            updateTimeChart(BASE_PREP_TIME, BASE_COOK_TIME);
+        }
+
+
+        // --- INITIALISATION ---
+
+        window.onload = function() {
+            // Rendu initial
+            renderPreparation();
+            renderDifficulty();
+            setupTabs();
+            updateRecipeDisplay();
+            
+            // Écouteur d'événement pour le changement de portions
+            portionsInput.addEventListener('input', updateRecipeDisplay);
+        };
+    </script>
 </body>
 </html>
