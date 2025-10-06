@@ -23,65 +23,158 @@
             transform: scale(1.1);
             color: #16A34A;
         }
+        /* Style de base pour le sélecteur de saison */
+        .season-select {
+            appearance: none; /* Cache la flèche par défaut dans certains navigateurs */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236B7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1.5em;
+        }
+
+        /* EFFET VISUEL DE DÉGRADÉ POUR LE TITRE PRINCIPAL */
+        .gradient-text {
+            /* Dégradé de couleurs vertes (éco-responsable) */
+            background-image: linear-gradient(to right, #059669, #10B981, #34D399); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Nécessaire pour le fallback */
+        }
     </style>
 </head>
 <body class="text-stone-800 p-4">
 
     <div class="container mx-auto max-w-3xl bg-white rounded-3xl shadow-xl p-8 md:p-12 mt-8">
 
-        <header class="text-center mb-10">
-            <!-- TITRE PRINCIPAL ESTHÉTIQUE ET VISUEL -->
-            <h1 class="text-center border-b border-gray-200 pb-4">
-                <span class="text-6xl sm:text-7xl font-extrabold text-green-800 block leading-tight">🚜💨 De la Fourche à la Fourchette 🍽️</span>
-                <!-- SOUS-TITRE AVEC LABELLISATION E3D EXPERT (taille réduite) -->
-                <span class="text-2xl sm:text-3xl font-semibold text-green-700 block mt-2">
-                    Les Recettes Durables du Lycée Abbé Grégoire, 
-                    <span class="text-xl sm:text-2xl font-normal">Académie de Paris</span>
-                </span>
+        <header class="mb-10">
+            <!-- TITRE PRINCIPAL : Centré et compact -->
+            <h1 class="border-b border-gray-200 pb-4">
+                
+                <!-- Utilisation de 'justify-center' pour centrer l'ensemble du titre -->
+                <div class="flex items-center justify-center leading-tight space-x-2">
+                    
+                    <!-- Emojis Tracteur -->
+                    <span class="text-3xl sm:text-4xl text-green-800">🚜💨</span>
+                    
+                    <!-- Texte "De la Fourche à" -->
+                    <span class="gradient-text text-3xl sm:text-4xl font-extrabold whitespace-nowrap">
+                        De la Fourche à
+                    </span>
+
+                    <!-- Texte "la Fourchette" avec un petit espace -->
+                    <span class="gradient-text text-3xl sm:text-4xl font-extrabold whitespace-nowrap ml-1"> 
+                        la Fourchette
+                    </span>
+                    
+                    <!-- Emoji Fourchette -->
+                    <span class="text-3xl sm:text-4xl text-orange-600">🍽️</span>
+                </div>
+
+                <!-- Sous-titre institutionnel - L'académie est forcée à la ligne grâce à <br> -->
+                <p class="text-xl sm:text-2xl font-semibold text-green-700 mt-2 block">
+                    Les Recettes Durables du Lycée Abbé Grégoire, <br>
+                    <span class="text-lg sm:text-xl font-normal">Académie de Paris</span>
+                </p>
             </h1>
-            <!-- PARAGRAPHE PROJET -->
-            <p class="text-xl text-stone-600 mt-4">Projet piloté par Mme SID, référente E3D.</p>
+            <!-- PARAGRAPHE PROJET - L'espace avec le titre est augmenté (mt-8) -->
+            <p class="text-xl text-stone-400 mt-8">Projet piloté par Mme SID, référente E3D.</p>
         </header>
 
         <!-- Section Engagement E3D -->
         <section class="mb-12 p-6 bg-green-100 rounded-xl border-l-4 border-green-500 shadow-inner">
             <h2 class="text-2xl font-bold text-green-700 mb-3">Notre Engagement E3D (Éco-responsable)</h2>
             
-            <p class="text-stone-700 leading-relaxed font-semibold mb-3">
+            <!-- TEXTE EN JUSTIFIÉ -->
+            <p class="text-stone-700 leading-relaxed font-semibold mb-3 text-justify">
                 Ici les créations culinaires interactives des éco-ambassadeurs pour un avenir plus durable.
             </p>
             
-            <p class="text-stone-700 leading-relaxed">
+            <!-- TEXTE EN JUSTIFIÉ -->
+            <p class="text-stone-700 leading-relaxed text-justify">
                 Ce livre de recettes est conçu pour être entièrement numérique afin de **réduire notre consommation de papier** et de soutenir l'environnement.
             </p>
         </section>
 
-        <!-- Table des Matières / Liste des Recettes -->
+        <!-- Table des Matières / Liste des Recettes avec sélecteur de saison -->
         <section>
-            <!-- SOUS-TITRE AVEC ÉMOJI AUTOMNE -->
-            <h2 class="text-3xl font-bold text-stone-700 mb-6 border-b pb-2 border-stone-300">Recettes Disponibles (Saison Automne 🍂)</h2>
+            
+            <!-- CONTENEUR MODIFIÉ : items-start devient items-center et h2 prend toute la largeur et est centré. -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 border-b pb-2 border-stone-300">
+                <!-- SOUS-TITRE DE SECTION - Taille ajustée pour la fluidité -->
+                <h2 class="text-2xl font-bold text-stone-700 mb-4 sm:mb-0 whitespace-nowrap w-full text-center">Recettes Responsables & Saines</h2>
+
+                <!-- SÉLECTEUR DE SAISON -->
+                <div class="flex items-center space-x-2">
+                    <label for="season-filter" class="text-stone-600 font-medium whitespace-nowrap">Saison :</label>
+                    <select id="season-filter" class="season-select p-2 border border-stone-300 rounded-lg bg-white shadow-sm pr-8 focus:ring-green-500 focus:border-green-500 text-stone-800">
+                        <option value="automne" selected>Automne 🍂</option>
+                        <option value="hiver">Hiver ❄️</option>
+                        <option value="printemps">Printemps 🌸</option>
+                        <option value="ete">Été ☀️</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="grid gap-6">
-                <!-- Carte de la Recette 1 : Courge Little Jack - Plus fluide et esthétique -->
+                <!-- Carte de la Recette 1 : Courge Little Jack -->
                 <a href="recette_courge_interactive.html" class="card-link flex items-center p-5 bg-white border border-gray-200 rounded-xl shadow-md transition duration-300 ease-in-out">
                     
                     <span class="icon text-5xl transition duration-300 mr-5 text-orange-500">🎃</span>
                     
                     <div class="flex-grow">
-                        <!-- TITRE DE LA CARTE -->
-                        <h3 class="text-2xl font-semibold text-orange-600">Courge Little Jack farcie au risotto par Reda Chibah 3PMT</h3>
+                        <!-- TITRE DE LA CARTE - Couleur ajustée à text-orange-600 -->
+                        <h3 class="text-2xl font-semibold text-orange-600">
+                            Courge Little Jack farcie au risotto <br>
+                            <!-- NOM DE L'ÉLÈVE - Couleur ajustée à text-orange-600 -->
+                            <span class="text-xl font-medium text-orange-600">par Reda Chibah 3PMT</span>
+                        </h3>
                         <p class="text-stone-500 mt-1">
                             Un classique d'automne crémeux avec Camembert et huile d'olive.
                         </p>
                     </div>
 
-                    <span class="text-green-500 text-3xl ml-4">&rarr;</span>
+                    <!-- NOUVEL ÉLÉMENT VISUEL : Livre ouvert pour "Lire la recette" -->
+                    <span class="icon text-3xl transition duration-300 ml-4 text-green-600" title="Voir la recette">📖</span>
+                </a>
+
+                <!-- Nouvelle Carte de la Recette 2 : Butternut rôti (Emoji remplacé par 🧡) -->
+                <a href="recette_butternut_interactive.html" class="card-link flex items-center p-5 bg-white border border-gray-200 rounded-xl shadow-md transition duration-300 ease-in-out">
+                    
+                    <span class="icon text-5xl transition duration-300 mr-5 text-orange-500">🧡</span>
+                    
+                    <div class="flex-grow">
+                        <!-- TITRE DE LA CARTE - Couleur ajustée à text-yellow-700 -->
+                        <h3 class="text-2xl font-semibold text-yellow-700">
+                            Butternut rôti aux épices <br>
+                            <!-- NOM DE L'ÉLÈVE - Couleur ajustée à text-yellow-700 -->
+                            <span class="text-xl font-medium text-yellow-700">par Yaté Doukansi 3PMT</span>
+                        </h3>
+                        <p class="text-stone-500 mt-1">
+                            Une recette simple et chaleureuse, agrémentée de miel et d'un mélange d'épices d'automne.
+                        </p>
+                    </div>
+
+                    <!-- NOUVEL ÉLÉMENT VISUEL : Livre ouvert pour "Lire la recette" -->
+                    <span class="icon text-3xl transition duration-300 ml-4 text-green-600" title="Voir la recette">📖</span>
                 </a>
                 
-                <!-- Placeholder pour futures recettes -->
-                <div class="flex items-center p-5 bg-stone-100 border border-dashed border-stone-300 rounded-xl">
-                    <span class="icon text-3xl text-stone-500 mr-5">➕</span>
-                    <p class="text-stone-600">Ajoutez ici vos prochaines recettes !</p>
+                <!-- Placeholder pour futures recettes (Adapté au style de carte) -->
+                <div class="flex items-center p-5 bg-indigo-50 border-2 border-dashed border-indigo-300 rounded-xl shadow-md cursor-default">
+                    
+                    <!-- Icône 🆕 au même style que les emojis des recettes -->
+                    <span class="icon text-5xl transition duration-300 mr-5 text-indigo-500 flex-shrink-0">🆕</span>
+                    
+                    <div class="flex-grow">
+                        <!-- TITRE de la carte placeholder -->
+                        <h3 class="text-2xl font-semibold text-indigo-700">Prochaines recettes à venir !</h3>
+                        <p class="text-stone-500 mt-1">
+                            Préparez-vous pour un véritable **voyage gastronomique riche de découvertes** !
+                        </p>
+                    </div>
+
+                    <!-- NOUVEL ÉLÉMENT VISUEL : Livres empilés pour "En préparation" -->
+                    <span class="icon text-3xl transition duration-300 ml-4 text-indigo-500" title="En préparation">📚</span>
                 </div>
 
             </div>
