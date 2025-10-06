@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="fr"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Butternut rôti aux Épices par Yaté DOUKANSY, 3PMT&lt;/title&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CHARGEMENT DE TAILWIND CSS (NÉCESSITE INTERNET) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CHART.JS ACTIVÉ --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Styles personnalisés pour améliorer les transitions et le rendu */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-button {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.2s;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 0.75rem; /* py-3 */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 0.75rem; /* py-3 */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 1.5rem; /* px-6 */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-right: 1.5rem; /* px-6 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.active-tab {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 3px solid #F97316;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #F97316;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Conteneur pour le graphique Doughnut */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 150px; /* Hauteur fixe pour le graphique */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-checkbox:checked + .step-text {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: line-through;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #9CA3AF;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-text { transition: color 0.3s, text-decoration 0.3s; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-checkbox { transform: scale(1.2); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="p-4 bg-gray-50"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- TAG EN HAUT À GAUCHE (Recette de l'automne) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-sm font-semibold text-gray-500 italic text-left mb-2"&gt;Recette de l'automne&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- HEADER / TITRE --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-10 pb-6 border-b-4 border-orange-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- MODIFICATION : Utilisation de Flexbox pour un meilleur alignement et réduction de la taille des coeurs (text-4xl/text-5xl) pour qu'ils correspondent au H1. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug flex items-center justify-center flex-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-4xl md:text-5xl mr-2"&gt;🧡&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>BUTTERNUT RÔTI AUX ÉPICES</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-4xl md:text-5xl ml-2"&gt;🧡&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic"&gt;par Yaté DOUKANSY, 3PMT&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- DESCRIPTION ET BOÎTE D'INFO --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="mb-8 flex flex-col md:flex-row gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:w-1/2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center"&gt;Recette Végétale et Gourmande 🍁&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-600 leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Une manière simple et délicieuse de cuisiner le Butternut. La combinaison du **miel (ou sirop d'érable)** et des **épices** (cannelle, muscade) apporte une saveur sucrée-salée parfaite pour l'automne. Idéal en accompagnement ou en plat végétarien léger.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- INDICATEUR DE DIFFICULTÉ --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-2"&gt;🧑‍🍳&lt;/span&gt; Niveau de Difficulté</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Ronds Pleins/Vides insérés par JavaScript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="difficulty-indicator" class="flex items-center gap-2 mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Placeholder for JS content --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- NOUVEAU : LE SAVIEZ-VOUS ? --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-green-700 flex items-center mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-2"&gt;💡&lt;/span&gt; Le saviez-vous ?<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- MODIFICATION ICI : Ajout de classes 'text-sm' et 'font-normal' pour un rendu plus petit et en italique --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-sm font-normal italic ml-2"&gt;(par Alice Dulos, TMA)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>La couleur orange vif du butternut est due à sa richesse exceptionnelle en &lt;b class="text-green-800"&gt;bêta-carotène&lt;/b&gt;. Une seule portion peut couvrir &lt;b class="text-green-800"&gt;plus de 100%&lt;/b&gt; de vos besoins quotidiens en &lt;b class="text-green-800"&gt;Vitamine A&lt;/b&gt;, essentielle pour la vision et le système immunitaire.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- NOUVEAU : ASTUCE ZÉRO GASPI --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-amber-700 flex items-center mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-2"&gt;♻️&lt;/span&gt; Astuce Zéro Gaspi : Les Graines !<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Ne jetez jamais les graines de courge ! Elles sont excellentes rôties. Après les avoir bien nettoyées (sans la pulpe), mélangez-les avec un peu d'huile d'olive, de sel, et une pincée de paprika. Faites-les griller séparément au four pendant **10 à 15 minutes**. Elles deviendront une garniture croustillante et nutritive.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- CARTE DES TEMPS (MISE À JOUR pour de meilleures proportions) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="recipe-times" class="md:w-1/2 p-4 bg-orange-50 rounded-xl shadow-inner border border-orange-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold text-orange-700 mb-3 text-center"&gt;⏱ Temps de la Recette&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Grid: 2 colonnes sur mobile, 3 colonnes sur desktop --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-center"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- CARD: Préparation --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 bg-white rounded-lg shadow-sm border border-orange-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-600 mb-1"&gt;⏳&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xl font-bold text-orange-600" id="prep-time-display"&gt;15 min&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;Préparation&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- CARD: Cuisson --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 bg-white rounded-lg shadow-sm border border-orange-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-600 mb-1"&gt;🔥&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xl font-bold text-orange-600" id="cook-time-display"&gt;35 min&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;Cuisson&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- CARD: Total (prend 2 colonnes sur mobile, 1 sur desktop) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="col-span-2 md:col-span-1 p-3 bg-orange-200 rounded-lg shadow-md border-2 border-orange-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-3xl text-orange-800 mb-1"&gt;⏱&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-2xl font-extrabold text-orange-800" id="total-time-display"&gt;50 min&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-700"&gt;Total estimé&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- SÉLECTEUR DE PORTIONS ET GRAPHIQUE --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="mb-10 p-6 bg-gray-50 rounded-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-stone-700 mb-4"&gt;Portions &amp; Visualisation&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-col md:flex-row items-center justify-between gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- SÉLECTEUR DE PORTIONS (md:w-1/2) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:w-1/2 w-full"&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-3xl mr-2"&gt;👥&lt;/span&gt; Choisir le nombre de portions :</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-500 mt-2"&gt;Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- GRAPHIQUE DES TEMPS (md:w-1/2) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:w-1/2 w-full chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="timeChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- SECTION PRINCIPALE (ONGLETS) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BARRE D'ONGLETS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex border-b border-gray-200 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="tab-ingredients" class="tab-button text-lg text-gray-500"&gt;Ingrédients&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="tab-preparation" class="tab-button text-lg text-gray-500 active-tab"&gt;Préparation&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- CONTENU DES ONGLETS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="content-ingredients" class="tab-content hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul id="ingredients-list" class="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Les ingrédients seront générés ici --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- ATTENTION : Retrait de la classe 'hidden' ici pour l'afficher par défaut --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="content-preparation" class="tab-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ol id="preparation-list" class="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Les étapes seront générées ici --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ol&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SCRIPT JAVASCRIPT --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const portionsInput = document.getElementById('portions');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ingredientsList = document.getElementById('ingredients-list');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const preparationList = document.getElementById('preparation-list');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const prepTimeDisplay = document.getElementById('prep-time-display');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cookTimeDisplay = document.getElementById('cook-time-display');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const totalTimeDisplay = document.getElementById('total-time-display');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let timeChart = null;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- DONNÉES DE LA RECETTE (BUTTERNUT RÔTI) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const BASE_PORTIONS = 4;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const BASE_PREP_TIME = 15; // min (Rapide car on coupe juste)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const BASE_COOK_TIME = 35; // MODIFIÉ : Réduit de 45 à 35 min</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const DIFFICULTY_LEVEL = 1; // Niveau 1 sur 5 (Très facile)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const recipeData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ingredients: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// CHANGEMENT MAJEUR ICI : De "unité" à "g" (1 unité = 1500g de chair)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Légumes et Fruits", name: "Courge Butternut (chair)", baseAmount: 1500, unit: "g" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Gras et Sucré", name: "Huile d'olive", baseAmount: 4, unit: "cs" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Gras et Sucré", name: "Miel liquide (ou Sirop d'érable)", baseAmount: 2, unit: "cs" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Épices et Assaisonnement", name: "Mélange d'épices (curry doux ou paprika)", baseAmount: 1.5, unit: "cc" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Épices et Assaisonnement", name: "Cannelle en poudre", baseAmount: 0.5, unit: "cc" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Épices et Assaisonnement", name: "Sel fin", baseAmount: 1, unit: "cc" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Épices et Assaisonnement", name: "Poivre noir fraîchement moulu", baseAmount: 0.5, unit: "cc" },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ category: "Garniture", name: "Graines de courge (pour garniture)", baseAmount: 2, unit: "cs" }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>preparation: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// CORRECTION : Retrait des symboles '$' et du formatage LaTeX</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ step: 1, category: "Préparation", text: "&lt;b&gt;Préchauffage et Préparation :&lt;/b&gt; Préchauffez le four à 200°C. Pelez la courge Butternut, coupez-la en deux dans la longueur, retirez les graines avec une cuillère. Coupez la chair en cubes d'environ 2 à 3 centimètres." },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ step: 2, category: "Assaisonnement", text: "&lt;b&gt;Assaisonnement :&lt;/b&gt; Dans un grand saladier, mélangez l'huile d'olive, le miel (ou sirop d'érable), le mélange d'épices (curry ou paprika), la cannelle, le sel fin et le poivre noir." },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// MODIFIÉ : Temps de rôtissage ajusté à 35 minutes</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ step: 3, category: "Cuisson", text: "&lt;b&gt;Enrobage et Rôtissage :&lt;/b&gt; Ajoutez les cubes de Butternut dans le saladier et mélangez bien pour les enrober du mélange épicé. Étalez-les en une seule couche sur une plaque de cuisson recouverte de papier sulfurisé. Enfournez pour 35 minutes." },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// MODIFIÉ : Vérification à mi-cuisson ajustée à 15 minutes (pour 35 min total)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ step: 4, category: "Finition", text: "&lt;b&gt;Mélange et Service :&lt;/b&gt; À mi-cuisson (15 minutes), remuez les cubes pour assurer un dorage uniforme. Retirez du four et parsemez des graines de courge grillées avant de servir. Se déguste chaud ou tiède." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Formate la quantité pour un affichage lisible (gère les unités et l'arrondi, y compris la conversion g/kg).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @param {number} amount - La quantité calculée.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @param {string} unit - L'unité (g, L, unités, cs, cc, etc.).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @returns {string} La chaîne formatée.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function formatAmount(amount, unit) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (unit === "selon goût") return unit;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Fonction utilitaire pour nettoyer l'affichage des décimales</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cleanDecimals = (num, fixed) =&gt; num.toFixed(fixed).replace(/\.0+$/, '');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Gestion spéciale pour les poids (g) : conversion en kg si &gt;= 1000g</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (unit === "g") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (amount &gt;= 1000) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const kgAmount = amount / 1000;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Affichage en kg avec 1 décimale (ex: 1.5 kg)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return cleanDecimals(kgAmount, 1) + ' kg';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Affichage en grammes (arrondi à l'entier pour la nourriture)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return cleanDecimals(amount, 0) + ' g';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Si c'est une unité (comme "unité", "petit", "grand"), on affiche avec 0 ou 1 décimale.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (unit.startsWith("unité") || unit === "petit" || unit === "grand") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return amount % 1 === 0 ? cleanDecimals(amount, 0) + ' ' + unit : cleanDecimals(amount, 1) + ' ' + unit;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Gestion des autres mesures (cs, cc, etc.): 1 ou 2 décimales.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// On arrondit pour les petites mesures (cuillères)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return cleanDecimals(amount, 1) + ' ' + unit;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Met à jour la liste des ingrédients en fonction du facteur de portion.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @param {number} factor - Facteur multiplicateur (nouvellePortion / BASE_PORTIONS).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderIngredients(factor) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ingredientsList.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentCategory = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>recipeData.ingredients.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Créer un nouveau titre de catégorie si on change de catégorie</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.category !== currentCategory) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentCategory = item.category;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const header = document.createElement('h3');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>header.className = 'text-lg font-bold text-stone-700 mt-6 mb-2 border-b border-orange-200 pb-1';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>header.textContent = item.category;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ingredientsList.appendChild(header);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const scaledAmount = item.baseAmount * factor;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const listItem = document.createElement('li');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>listItem.className = 'flex justify-between items-center p-3 bg-white rounded-lg border border-gray-100 shadow-sm transition-shadow hover:shadow-md';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const amountText = formatAmount(scaledAmount, item.unit);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>listItem.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-gray-700"&gt;${item.name}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-semibold text-orange-600"&gt;${amountText}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ingredientsList.appendChild(listItem);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Rend la liste des étapes de préparation avec des cases à cocher.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderPreparation() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>preparationList.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>recipeData.preparation.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const listItem = document.createElement('li');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>listItem.className = 'flex items-start p-4 bg-white rounded-xl shadow-md border border-gray-100';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>listItem.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" class="step-checkbox mt-1.5 mr-4 accent-orange-500 min-w-4 min-h-4 cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-text flex-grow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold text-orange-600 mr-2"&gt;${item.step}.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-gray-700"&gt;${item.text}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>preparationList.appendChild(listItem);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Met à jour les temps de préparation et le temps total (la cuisson est fixe).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateTimes() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newPortions = parseInt(portionsInput.value, 10);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Formule : Le temps de préparation augmente légèrement avec les portions (exposant 0.1)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newPrepTime = Math.round(BASE_PREP_TIME * Math.pow(newPortions / BASE_PORTIONS, 0.1));<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newCookTime = BASE_COOK_TIME;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newTotalTime = newPrepTime + newCookTime;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>prepTimeDisplay.textContent = `${newPrepTime} min`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cookTimeDisplay.textContent = `${newCookTime} min`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>totalTimeDisplay.textContent = `${newTotalTime} min`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateTimeChart(newPrepTime, newCookTime); // Appel à la mise à jour du graphique</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Affiche l'indicateur de difficulté.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderDifficulty() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const indicator = document.getElementById('difficulty-indicator');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const maxLevel = 5;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>indicator.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 1; i &lt;= maxLevel; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const icon = document.createElement('span');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const isFilled = i &lt;= DIFFICULTY_LEVEL;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon.className = `h-4 w-4 rounded-full transition-all duration-300 block`;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isFilled) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Cercle plein</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>icon.classList.add('bg-orange-500', 'shadow-md');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Cercle vide (bordure)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>icon.classList.add('border-2', 'border-orange-500');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>indicator.appendChild(icon);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Crée le graphique Chart.js (Donut).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderTimeChart() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// S'assurer que Chart est disponible avant de l'utiliser</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (typeof Chart === 'undefined') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.warn("Chart.js n'est pas chargé. Le graphique ne sera pas affiché.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const prepTime = parseInt(prepTimeDisplay.textContent);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cookTime = parseInt(cookTimeDisplay.textContent);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('timeChart').getContext('2d');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Détruire l'ancienne instance si elle existe</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (timeChart) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>timeChart.destroy();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeChart = new Chart(ctx, {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: 'doughnut',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>labels: ['Préparation', 'Cuisson'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [prepTime, cookTime],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: [</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>'#FDBA74', // Orange-300 (Clair)</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>'#EA580C', // Orange-600 (Foncé)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>hoverBackgroundColor: [</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>'#F97316', // Orange-500</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>'#C2410C', // Orange-700</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: '#ffffff',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderWidth: 2,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cutout: '70%', // Taille du trou pour le donut</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>legend: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>position: 'bottom',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>labels: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>padding: 10,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>size: 12,</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>family: 'Inter'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>label: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>let label = context.label || '';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>if (label) {</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>label += ': ';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>label += context.parsed + ' min';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>return label;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Met à jour les données du graphique existant.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @param {number} prepTime - Nouveau temps de préparation.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* @param {number} cookTime - Nouveau temps de cuisson (fixe).</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateTimeChart(prepTime, cookTime) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (timeChart) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>timeChart.data.datasets[0].data = [prepTime, cookTime];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>timeChart.update();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- GESTION DES ÉVÉNEMENTS ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Gère le changement du nombre de portions.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handlePortionChange() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newPortions = parseInt(portionsInput.value, 10);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (newPortions &gt; 0 &amp;&amp; newPortions &lt;= 12) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const factor = newPortions / BASE_PORTIONS;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderIngredients(factor);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateTimes(); // Appelle aussi updateTimeChart</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Empêche les valeurs invalides (ou vide)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>portionsInput.value = BASE_PORTIONS;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderIngredients(1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateTimes();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">         </span>* Gère le clic sur les boutons d'onglet.</p>
+<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleTabClick(event) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Désactiver tous les onglets et cacher tous les contenus</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-button').forEach(tab =&gt; tab.classList.remove('active-tab'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-content').forEach(content =&gt; content.classList.add('hidden'));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Activer l'onglet cliqué et afficher le contenu correspondant</p>
+<p class="p1"><span class="Apple-converted-space">            </span>event.target.classList.add('active-tab');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const targetId = event.target.id.replace('tab-', 'content-');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(targetId).classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- INITIALISATION AU CHARGEMENT DE LA PAGE ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Initialisation des éléments de la page</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderDifficulty();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderIngredients(1);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderPreparation();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateTimes(); // Met à jour les temps et appelle updateTimeChart()</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderTimeChart(); // Crée le graphique initial</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Ajout des écouteurs</p>
+<p class="p1"><span class="Apple-converted-space">            </span>portionsInput.addEventListener('input', handlePortionChange);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-button').forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', handleTabClick);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
