@@ -56,27 +56,33 @@
             transform: translateY(-2px);
             color: #2563EB; /* hover:text-blue-600 */
         }
+        
+        /* Style pour les boutons +/- */
+        .portion-button {
+            height: 48px; /* Hauteur ajustée pour correspondre à l'input p-3/text-2xl */
+            width: 48px;
+            flex-shrink: 0;
+            @apply bg-orange-500 text-white text-2xl font-bold rounded-lg hover:bg-orange-600 transition duration-150 shadow-md;
+        }
 
     </style>
 </head>
 <body class="p-4 bg-gray-50 relative"> <!-- 'relative' ajouté au body pour positionner le badge -->
 
-    <!-- DÉBUT DE LA MODIFICATION 1 : Badge Automne (style de l'autre recette) -->
+    <!-- Badge Automne -->
     <div class="autumn-badge hidden md:block">
         Recette d'Automne
     </div>
-    <!-- FIN DE LA MODIFICATION 1 -->
 
     <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
         
-        <!-- HEADER / TITRE (Ajusté pour la symétrie et l'impact visuel) -->
+        <!-- HEADER / TITRE -->
         <header class="text-center mb-10 pb-6 border-b-4 border-orange-100">
             <h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug">
                 <span class="text-5xl md:text-6xl mr-2">🎃</span>
                 COURGE LITTLE JACK FARCIE AU RISOTTO
                 <span class="text-5xl md:text-6xl ml-2">🎃</span>
             </h1>
-            <!-- Ancien Badge Automne Rétabli comme "par Reda Chibah, 3PMT" -->
             <div class="text-center">
                 <p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic">par Reda C., 3PMT</p>
             </div>
@@ -84,9 +90,7 @@
 
         <!-- DESCRIPTION ET BOÎTE D'INFO -->
         <section class="mb-8 flex flex-col md:flex-row gap-6">
-            <!-- Largeur ajustée à md:w-2/3 pour laisser plus de place à la carte des temps -->
             <div class="md:w-2/3">
-                <!-- Suppression de la balise h2 "Recette d'Automne" pour éviter la duplication avec le badge en haut -->
                 <h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center">Recette Végétale & Gourmande 🧑‍🍳</h2> 
                 <p class="text-gray-600 leading-relaxed">
                     Cette recette met en valeur la courge Little Jack, une petite citrouille parfaite pour une portion individuelle. Le risotto est crémeux grâce au **Camembert** et à l'**huile d'olive**, offrant une alternative gourmande au beurre et au parmesan.
@@ -97,7 +101,6 @@
                     <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">
                         <span class="mr-2">🧑‍🍳</span> Niveau de Difficulté (Moyen)
                     </h3>
-                    <!-- CODE VISUEL (Ronds Pleins/Vides) -->
                     <div id="difficulty-indicator" class="flex items-center gap-3 mt-2">
                         <!-- Les ronds seront insérés ici par JavaScript -->
                     </div>
@@ -125,8 +128,7 @@
 
             </div>
             
-            <!-- CARTE DES TEMPS (Visuels Améliorés) -->
-            <!-- Largeur ajustée à md:w-1/3 pour être plus petit et proportionnel -->
+            <!-- CARTE DES TEMPS -->
             <div id="recipe-times" class="md:w-1/3 p-4 bg-orange-50 rounded-lg shadow-inner border border-orange-200">
                 <h3 class="text-xl font-bold text-orange-700 mb-3 text-center">⏱ Temps Total</h3>
                 <div class="grid grid-cols-3 gap-3 text-center">
@@ -149,17 +151,28 @@
             </div>
         </section>
 
-        <!-- SÉLECTEUR DE PORTIONS ET GRAPHIQUE -->
+        <!-- SÉLECTEUR DE PORTIONS (Mise à jour avec +/-) ET GRAPHIQUE -->
         <section class="mb-10 p-6 bg-gray-50 rounded-xl">
             <h2 class="text-2xl font-bold text-stone-700 mb-4">Portions & Visualisation</h2>
             
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <!-- SÉLECTEUR DE PORTIONS (Visuel Amélioré) -->
+                <!-- SÉLECTEUR DE PORTIONS -->
                 <div class="md:w-1/2 w-full">
                     <label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center">
                         <span class="text-3xl mr-2">👥</span> Choisir le nombre de portions :
                     </label>
-                    <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md">
+                    
+                    <!-- CONTENEUR DES BOUTONS ET INPUT -->
+                    <div class="flex items-center space-x-2">
+                        <button id="decrement-portion" class="portion-button" aria-label="Retirer une portion">−</button>
+                        
+                        <input type="number" id="portions" value="4" min="1" max="12" 
+                               class="flex-grow p-3 border border-gray-300 rounded-lg text-2xl text-center 
+                                      focus:ring-orange-500 focus:border-orange-500 shadow-md">
+                        
+                        <button id="increment-portion" class="portion-button" aria-label="Ajouter une portion">+</button>
+                    </div>
+                    
                     <p class="text-sm text-gray-500 mt-2">Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.</p>
                 </div>
 
@@ -190,7 +203,7 @@
 
     </div>
     
-    <!-- Bouton de Retour aux recettes (style de l'autre recette) -->
+    <!-- Bouton de Retour aux recettes -->
     <a href="index.html" class="return-button">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Retour aux recettes
@@ -198,6 +211,8 @@
 
     <script>
         const portionsInput = document.getElementById('portions');
+        const incrementButton = document.getElementById('increment-portion');
+        const decrementButton = document.getElementById('decrement-portion');
         const ingredientsList = document.getElementById('ingredients-list');
         const preparationList = document.getElementById('preparation-list');
         const prepTimeDisplay = document.getElementById('prep-time-display');
@@ -210,7 +225,9 @@
         const BASE_PORTIONS = 4;
         const BASE_PREP_TIME = 25; // min
         const BASE_COOK_TIME = 35; // min
-        const DIFFICULTY_LEVEL = 2; // Niveau 2 sur 5 (Facile/Abordable)
+        const MIN_PORTIONS = 1;
+        const MAX_PORTIONS = 12;
+        const DIFFICULTY_LEVEL = 3; // Niveau 3 sur 5 (Moyen)
 
         const recipeData = {
             ingredients: [
@@ -381,7 +398,7 @@
             }
         }
 
-        // Rendu de l'indicateur de difficulté (utilise DIFFICULTY_LEVEL = 2)
+        // Rendu de l'indicateur de difficulté (utilise DIFFICULTY_LEVEL = 3)
         function renderDifficulty() {
             const indicator = document.getElementById('difficulty-indicator');
             const maxLevel = 5;
@@ -413,13 +430,13 @@
         function handlePortionChange() {
             let newPortions = parseInt(portionsInput.value, 10);
             
-            // Assurer que les portions restent dans les limites (1 à 12)
-            if (newPortions < 1 || isNaN(newPortions)) {
-                newPortions = 1;
-                portionsInput.value = 1;
-            } else if (newPortions > 12) {
-                newPortions = 12;
-                portionsInput.value = 12;
+            // Assurer que les portions restent dans les limites
+            if (newPortions < MIN_PORTIONS || isNaN(newPortions)) {
+                newPortions = MIN_PORTIONS;
+                portionsInput.value = MIN_PORTIONS;
+            } else if (newPortions > MAX_PORTIONS) {
+                newPortions = MAX_PORTIONS;
+                portionsInput.value = MAX_PORTIONS;
             }
 
             const factor = newPortions / BASE_PORTIONS;
@@ -427,6 +444,41 @@
             renderIngredients(factor);
             updateTimes(newPortions);
         }
+        
+        // Nouvelle fonction pour incrémenter/décrémenter les portions
+        function changePortions(delta) {
+            let currentPortions = parseInt(portionsInput.value, 10);
+            let newPortions = currentPortions + delta;
+
+            if (newPortions >= MIN_PORTIONS && newPortions <= MAX_PORTIONS) {
+                portionsInput.value = newPortions;
+                handlePortionChange();
+            }
+            // Mettre à jour la couleur des boutons si on atteint les limites
+            updateButtonState(newPortions);
+        }
+        
+        // Fonction pour désactiver/activer les boutons visuellement
+        function updateButtonState(currentPortions) {
+            // Désactiver le bouton moins si au minimum
+            if (currentPortions <= MIN_PORTIONS) {
+                decrementButton.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                decrementButton.classList.add('bg-gray-300', 'cursor-not-allowed');
+            } else {
+                decrementButton.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                decrementButton.classList.remove('bg-gray-300', 'cursor-not-allowed');
+            }
+            
+            // Désactiver le bouton plus si au maximum
+            if (currentPortions >= MAX_PORTIONS) {
+                incrementButton.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                incrementButton.classList.add('bg-gray-300', 'cursor-not-allowed');
+            } else {
+                incrementButton.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                incrementButton.classList.remove('bg-gray-300', 'cursor-not-allowed');
+            }
+        }
+
 
         function handleTabClick(event) {
             // Get all tab buttons and content panels
@@ -456,9 +508,15 @@
 
             // 3. Rendre l'indicateur de difficulté
             renderDifficulty(); 
+            
+            // 4. Mettre à jour l'état des boutons au chargement
+            updateButtonState(BASE_PORTIONS);
 
-            // 4. Ajouter les écouteurs d'événements
+            // 5. Ajouter les écouteurs d'événements
             portionsInput.addEventListener('input', handlePortionChange);
+            incrementButton.addEventListener('click', () => changePortions(1));
+            decrementButton.addEventListener('click', () => changePortions(-1));
+
             // Get all tab buttons and attach handler
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.addEventListener('click', handleTabClick);
