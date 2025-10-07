@@ -165,3 +165,151 @@
     function displayDifficulty(level) {
       difficultyIndicator.innerHTML = '';
       for(let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.textContent = i <= level ? '★' : '☆';
+        star.className = i <= level ? 'text-yellow-500 text-2xl' : 'text-gray-300 text-2xl';
+        difficultyIndicator.appendChild(star);
+      }
+    }
+
+    // Met à jour la liste des ingrédients selon le nombre de portions
+    function updateIngredients(portions) {
+      ingredientsList.innerHTML = '';
+
+      recipeData.ingredients.forEach(ing => {
+        const amount = (ing.baseAmount / BASE_PORTIONS) * portions;
+        const amountText = (amount % 1 !== 0) ? amount.toFixed(2) : amount.toFixed(0);
+
+        const li = document.createElement('li');
+        li.className = "flex justify-between bg-orange-50 border border-orange-200 rounded-lg p-3 shadow-sm";
+        li.innerHTML = `
+          <span class="font-semibold">${ing.name}</span>
+          <span class="font-mono text-orange-700">${amountText} ${ing.unit}</span>
+        `;
+        ingredientsList.appendChild(li);
+      });
+    }
+
+    // Affiche les étapes de préparation
+    function displayPreparationSteps() {
+      preparationList.innerHTML = '';
+      recipeData.preparationSteps.forEach((step, idx) => {
+        const li = document.createElement('li');
+        li.className = "flex items-start gap-3";
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `step-${idx}`;
+        checkbox.className = 'step-checkbox mt-1';
+
+        const label = document.createElement('label');
+        label.htmlFor = `step-${idx}`;
+        label.className = 'step-text cursor-pointer text-gray-800';
+        label.textContent = step;
+
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        preparationList.appendChild(li);
+      });
+    }
+
+    // Met à jour les temps d'après le nombre de portions (simple exemple)
+    function updateTimes(portions) {
+      // Ici on laisse les temps fixes mais on pourrait ajuster selon portions
+      prepTimeDisplay.textContent = BASE_PREP_TIME + " min";
+      cookTimeDisplay.textContent = BASE_COOK_TIME + " min";
+      totalTimeDisplay.textContent = (BASE_PREP_TIME + BASE_COOK_TIME) + " min";
+    }
+
+    // Initialise le graphique Doughnut (temps)
+    let timeChart = null;
+    function createTimeChart() {
+      const ctx = document.getElementById('timeChart').getContext('2d');
+      if(timeChart) timeChart.destroy();
+
+      timeChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Préparation', 'Cuisson'],
+          datasets: [{
+            data: [BASE_PREP_TIME, BASE_COOK_TIME],
+            backgroundColor: ['#FB923C', '#F97316'],
+            hoverOffset: 20,
+            borderWidth: 2,
+            borderColor: '#fff',
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { font: { size: 14 }, color: '#444' }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.label}: ${ctx.parsed} min`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Gestion des onglets
+    function switchTab(tab) {
+      if(tab === 'ingredients') {
+        tabIngredientsBtn.classList.add('active-tab');
+        tabIngredientsBtn.classList.remove('text-gray-500');
+        tabIngredientsBtn.classList.add('text-gray-700');
+
+        tabPreparationBtn.classList.remove('active-tab');
+        tabPreparationBtn.classList.remove('text-gray-700');
+        tabPreparationBtn.classList.add('text-gray-500');
+
+        contentIngredients.classList.remove('hidden');
+        contentPreparation.classList.add('hidden');
+      } else {
+        tabPreparationBtn.classList.add('active-tab');
+        tabPreparationBtn.classList.remove('text-gray-500');
+        tabPreparationBtn.classList.add('text-gray-700');
+
+        tabIngredientsBtn.classList.remove('active-tab');
+        tabIngredientsBtn.classList.remove('text-gray-700');
+        tabIngredientsBtn.classList.add('text-gray-500');
+
+        contentPreparation.classList.remove('hidden');
+        contentIngredients.classList.add('hidden');
+      }
+    }
+
+    // Initialisation
+    function init() {
+      displayDifficulty(DIFFICULTY_LEVEL);
+      updateIngredients(BASE_PORTIONS); 
+      displayPreparationSteps();
+      updateTimes(BASE_PORTIONS);
+      createTimeChart();
+
+      portionsInput.addEventListener('input', () => {
+        let val = parseInt(portionsInput.value);
+        if(isNaN(val) || val < 1) {
+          val = 1;
+          portionsInput.value = 1;
+        } else if(val > 12) {
+          val = 12;
+          portionsInput.value = 12;
+        }
+        updateIngredients(val);
+        updateTimes(val);
+      });
+
+      tabIngredientsBtn.addEventListener('click', () => switchTab('ingredients'));
+      tabPreparationBtn.addEventListener('click', () => switchTab('preparation'));
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
