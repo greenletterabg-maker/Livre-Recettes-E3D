@@ -83,35 +83,50 @@
             }
         }
 
-        /* --- STYLES DE DIFFICULTÉ (selon l'image fournie) --- */
-        /* Style du cercle de difficulté rempli (Orange) */
+        /* --- STYLES DE DIFFICULTÉ --- */
         .difficulty-dot {
             display: inline-block;
-            width: 1.2rem; /* Légèrement plus grand */
+            width: 1.2rem;
             height: 1.2rem;
             border-radius: 50%;
-            background-color: #F97316; /* Orange (Orange-500) */
+            background-color: #F97316;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
         }
-        /* Style du cercle de difficulté vide (Pêche/Orange clair) */
         .difficulty-dot-empty {
             display: inline-block;
             width: 1.2rem;
             height: 1.2rem;
             border-radius: 50%;
-            border: 2px solid #FDBA74; /* Peach (Orange-300) pour la bordure */
+            border: 2px solid #FDBA74;
             background-color: transparent;
             transition: transform 0.2s;
+        }
+
+        /* Style mis à jour pour le badge "Automne" (plus discret) */
+        .autumn-badge {
+            position: absolute; 
+            top: 15px; /* Petit espacement intérieur */
+            left: 15px;
+            z-index: 10;
         }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
+    <!-- Ajout de 'relative' au container principal pour positionner le badge 'Autumn' en absolu -->
+    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8 relative">
         
+        <!-- BADGE "RECETTE DE L'AUTOMNE" (Plus petit, plus discret, avec classeur 🗃️) -->
+        <!-- Utilisation de px-2 py-0.5 pour une taille minimale -->
+        <div class="autumn-badge inline-flex items-center px-2 py-0.5 bg-amber-100 text-amber-700 rounded-md shadow-sm border border-amber-300">
+            <!-- Remplacement du SVG par l'emoji Classeur, taille réduite à text-sm -->
+            <span class="mr-1 text-sm">🗃️</span>
+            <span class="text-xs font-semibold tracking-wide">Recette d'Automne</span>
+        </div>
+
         <!-- EN-TÊTE -->
-        <header class="text-center mb-10 pb-6 border-b-4 border-green-100">
+        <header class="text-center mb-10 pb-6 border-b-4 border-green-100 mt-8"> <!-- Ajout de mt-8 pour l'espace sous le badge -->
             <!-- TITRE PRINCIPAL DE LA RECETTE (mb-0 pour supprimer l'espace du bas) -->
             <h1 class="text-4xl md:text-5xl font-extrabold text-green-700 leading-snug mb-0">
                 POMMES SAUTÉES À LA POÊLE
@@ -251,9 +266,9 @@
 
     </div>
 
-    <!-- Bouton de retour (fixe) - La cible est générique car l'index n'existe pas ici -->
+    <!-- Bouton de retour (fixe) -->
     <div class="fixed bottom-4 left-4 z-50">
-        <a href="#" id="back-link" class="inline-flex items-center px-4 py-3 bg-white text-gray-700 font-bold rounded-full shadow-2xl transition duration-300 ease-in-out hover:bg-green-600 hover:text-white transform hover:scale-105">
+        <a href="index.html" id="back-link" class="inline-flex items-center px-4 py-3 bg-white text-gray-700 font-bold rounded-full shadow-2xl transition duration-300 ease-in-out hover:bg-green-600 hover:text-white transform hover:scale-105">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path></svg>
             <span class="ml-2 hidden sm:inline">Retour aux recettes</span>
             <span class="ml-2 inline sm:hidden">Retour</span>
