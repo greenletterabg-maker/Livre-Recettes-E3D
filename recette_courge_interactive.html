@@ -1,275 +1,200 @@
-<!-- Force l'interprétation en HTML dans certains environnements GitHub qui envoient un Content-Type 'text/plain' -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pommes sautées à la poêle</title>
-    
-    <!-- Chargement de Tailwind CSS -->
+    <title>Courge Little Jack farcie au risotto par Reda, 3PMT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chargement de Chart.js pour le graphique -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    
-    <!-- Configuration de la police Inter (comme demandé) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Styles personnalisés pour améliorer les transitions et le rendu */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f7f7f7; 
-            /* Enlève le centrage strict pour mieux gérer le défilement */
-            padding: 1rem;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .tab-button { transition: all 0.2s; }
+        .active-tab { border-bottom: 3px solid #F97316; font-weight: 700; color: #F97316; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        .step-checkbox:checked + .step-text { text-decoration: line-through; color: #9CA3AF; }
+        .step-text { transition: color 0.3s, text-decoration 0.3s; }
+        .step-checkbox { transform: scale(1.2); }
+        /* Nouveau style pour le survol des ingrédients */
+        .ingredient-item:hover { transform: translateY(-1px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
+        .ingredient-item { transition: all 0.15s ease-in-out; }
 
-        /* Styles spécifiques des onglets */
-        .tab-button { 
-            transition: all 0.2s; 
-            padding-top: 0.75rem; /* py-3 */
-            padding-bottom: 0.75rem; /* py-3 */
-            padding-left: 1.5rem; /* px-6 */
-            padding-right: 1.5rem; /* px-6 */
-            cursor: pointer;
-        }
-        .active-tab { 
-            border-bottom: 3px solid #10B981; /* Vert émeraude */
-            font-weight: 700; 
-            color: #10B981; 
-        }
-
-        /* Conteneur pour le graphique Doughnut (petite taille pour la visualisation) */
-        .chart-container { 
-            position: relative; 
-            width: 100%; 
-            max-width: 250px; /* Taille fixée pour ne pas devenir "trop gros" */
-            height: 250px; /* Assure un ratio 1:1 pour le doughnut */
-            margin: 0 auto;
-        }
-
-        /* --- STYLES DES ÉTAPES DE PRÉPARATION AMÉLIORÉS (liste à cocher) --- */
-        .step-text { 
-            transition: color 0.3s, text-decoration 0.3s; 
-        }
-        .step-checkbox { display: none; }
-        
-        /* Applique le barré et la couleur atténuée lorsque l'étape est cochée */
-        .step-checkbox:checked + .step-label .step-text { 
-            text-decoration: line-through; 
-            color: #9CA3AF; 
-        }
-
-        /* Style de l'indicateur de coche (le cercle à droite) lorsqu'il est coché */
-        .step-checkbox:checked + .step-label > div:last-child { 
-            background-color: #059669; /* Green-600 */
-            border-color: #059669;
-        }
-
-        /* Affiche le SVG checkmark lorsque l'étape est cochée */
-        .step-checkbox:checked + .step-label > div:last-child svg {
-            opacity: 1; /* Show checkmark */
-        }
-        /* --- FIN STYLES ÉTAPES --- */
-
-        /* Styles Responsifs pour les cartes de temps sur mobile */
-        @media (max-width: 767px) {
-            .time-card-grid {
-                grid-template-columns: 1fr 1fr; /* 2 colonnes sur mobile */
-            }
-            .time-card-grid > div:last-child {
-                grid-column: span 2; /* Total time prend toute la largeur */
-            }
-        }
-
-        /* --- STYLES DE DIFFICULTÉ --- */
-        .difficulty-dot {
-            display: inline-block;
-            width: 1.2rem;
-            height: 1.2rem;
-            border-radius: 50%;
-            background-color: #F97316;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-        .difficulty-dot-empty {
-            display: inline-block;
-            width: 1.2rem;
-            height: 1.2rem;
-            border-radius: 50%;
-            border: 2px solid #FDBA74;
-            background-color: transparent;
-            transition: transform 0.2s;
-        }
-
-        /* Style pour le badge "Automne" (discret, en haut à gauche) */
+        /* Styles pour le badge "Recette d'Automne" en haut à gauche */
         .autumn-badge {
-            position: absolute; 
-            top: 15px; 
-            left: 15px;
+            position: absolute;
+            top: 20px; /* Espace depuis le haut */
+            left: 20px; /* Espace depuis la gauche */
+            background-color: #FEF3C7; /* bg-amber-100 */
+            color: #D97706; /* text-amber-700 */
+            padding: 6px 12px;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             z-index: 10;
         }
+
+        /* Styles pour le bouton de retour en bas à gauche */
+        .return-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: white;
+            color: #3B82F6; /* text-blue-500 */
+            padding: 10px 16px;
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+        .return-button:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+            color: #2563EB; /* hover:text-blue-600 */
+        }
+
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="p-4 bg-gray-50 relative"> <!-- 'relative' ajouté au body pour positionner le badge -->
 
-    <!-- Conteneur principal: rendu RELATIVE pour que le badge en ABSOLU se positionne par rapport à lui -->
-    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8 relative">
+    <!-- DÉBUT DE LA MODIFICATION 1 : Badge Automne (style de l'autre recette) -->
+    <div class="autumn-badge hidden md:block">
+        Recette d'Automne
+    </div>
+    <!-- FIN DE LA MODIFICATION 1 -->
+
+    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
         
-        <!-- BADGE "RECETTE DE L'AUTOMNE" (🗃️ Classeur) -->
-        <div class="autumn-badge inline-flex items-center px-2 py-0.5 bg-amber-100 text-amber-700 rounded-md shadow-sm border border-amber-300">
-            <span class="mr-1 text-sm">🗃️</span>
-            <span class="text-xs font-semibold tracking-wide">Recette d'Automne</span>
-        </div>
-
-        <!-- EN-TÊTE -->
-        <header class="text-center mb-10 pb-6 border-b-4 border-green-100 mt-8"> 
-            <!-- TITRE PRINCIPAL DE LA RECETTE -->
-            <h1 class="text-4xl md:text-5xl font-extrabold text-green-700 leading-snug mb-0">
-                POMMES SAUTÉES À LA POÊLE
+        <!-- HEADER / TITRE (Ajusté pour la symétrie et l'impact visuel) -->
+        <header class="text-center mb-10 pb-6 border-b-4 border-orange-100">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug">
+                <span class="text-5xl md:text-6xl mr-2">🎃</span>
+                COURGE LITTLE JACK FARCIE AU RISOTTO
+                <span class="text-5xl md:text-6xl ml-2">🎃</span>
             </h1>
-            <!-- Auteurs/Sous-titre -->
-            <p class="text-xl md:text-2xl font-semibold text-gray-600 mt-1 italic">par Reda Chibah et Yaté Doukansy, 3PMT</p>
+            <!-- Ancien Badge Automne Rétabli comme "par Reda Chibah, 3PMT" -->
+            <div class="text-center">
+                <p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic">par Reda Chibah, 3PMT</p>
+            </div>
         </header>
 
-        <!-- DESCRIPTION & TEMPS -->
+        <!-- DESCRIPTION ET BOÎTE D'INFO -->
         <section class="mb-8 flex flex-col md:flex-row gap-6">
-            <!-- Colonne principale (Description, Difficulté, Faits) - Prend 60% sur desktop -->
-            <div class="md:w-3/5">
-                <h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center">Recette Végétale & Rapide 🌱</h2>
-                <!-- TEXTE JUSTIFIÉ -->
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    Ce dessert simple et sain est parfait pour utiliser des pommes mûres. En utilisant un fond d'eau et la chaleur, les pommes caramélisent naturellement grâce à leurs sucres, sans nécessiter l'ajout de matières grasses. Idéal comme garniture de crêpes, de yaourts, ou simplement nature.
+            <!-- Largeur ajustée à md:w-2/3 pour laisser plus de place à la carte des temps -->
+            <div class="md:w-2/3">
+                <!-- Suppression de la balise h2 "Recette d'Automne" pour éviter la duplication avec le badge en haut -->
+                <h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center">Recette Végétale & Gourmande 🧑‍🍳</h2> 
+                <p class="text-gray-600 leading-relaxed">
+                    Cette recette met en valeur la courge Little Jack, une petite citrouille parfaite pour une portion individuelle. Le risotto est crémeux grâce au **Camembert** et à l'**huile d'olive**, offrant une alternative gourmande au beurre et au parmesan.
                 </p>
-
-                <!-- Indicateur de difficulté -->
+                
+                <!-- INDICATEUR DE DIFFICULTÉ -->
                 <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm">
                     <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">
-                        <span class="mr-2 text-2xl">👨‍🍳</span> Niveau de Difficulté (Facile)
+                        <span class="mr-2">🧑‍🍳</span> Niveau de Difficulté (Facile)
                     </h3>
+                    <!-- CODE VISUEL (Ronds Pleins/Vides) -->
                     <div id="difficulty-indicator" class="flex items-center gap-2 mt-2">
-                        <!-- Les indicateurs de difficulté (cercles) seront insérés ici par JS -->
+                        <!-- Les ronds seront insérés ici par JavaScript -->
                     </div>
                 </div>
 
-                <!-- NOUVELLES RUBRIQUES -->
-                <div class="mt-4 space-y-4">
-                    <!-- Proverbe Célèbre -->
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-red-700 flex items-center mb-1">
-                            <span class="mr-2 text-2xl">🌍</span> Proverbe Célèbre
-                        </h3>
-                        <p class="text-gray-700 text-sm italic font-medium text-red-600">
-                            "An apple a day, keeps the doctor away"
-                        </p>
-                        <!-- TEXTE JUSTIFIÉ -->
-                        <p class="text-gray-600 text-sm mt-1 text-justify">
-                            (Une pomme par jour éloigne le médecin) – Un fruit simple mais aux bienfaits multiples !
-                        </p>
-                    </div>
-
-                    <!-- Astuce 'Sans Gras' -->
-                    <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-yellow-700 flex flex-col items-start mb-1">
-                            <span class="flex items-center">
-                                <span class="mr-2 text-2xl">💡</span> Astuce 'Sans Gras'
-                            </span>
-                        </h3>
-                        <!-- TEXTE JUSTIFIÉ -->
-                        <p class="text-gray-600 text-sm text-justify">
-                            Pour obtenir des pommes bien dorées sans beurre, utilisez une <b>poêle antiadhésive</b>. L'astuce est de démarrer la cuisson à feu moyen-fort avec un fond d'eau (2 cuillères à soupe) pour éviter que les pommes ne collent avant que leur propre jus ne soit libéré.
-                        </p>
-                    </div>
-
-                    <!-- "Accompagnement Recommandé" -->
-                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-blue-700 flex items-center mb-1">
-                            <span class="mr-2 text-2xl">☕</span> Idée d'Accompagnement
-                        </h3>
-                        <!-- TEXTE JUSTIFIÉ -->
-                        <p class="text-gray-700 text-sm text-justify">
-                            Servez ces pommes avec une cuillère de <b>fromage blanc</b> et une pincée de granola croquant pour un contraste de textures parfait.
-                        </p>
-                    </div>
+                <!-- BOOSTER DE CUISSON -->
+                <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-red-700 flex items-center mb-1">
+                        <span class="mr-2 text-2xl">⚡</span> Booster de Cuisson
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Pour une **cuisson plus rapide** des courges Little Jack, pensez au **blanchiment**! Plongez-les 5 minutes dans l'eau bouillante avant de les enfourner. Cela réduit le temps de cuisson au four de près de 10 minutes.
+                    </p>
                 </div>
+
+                <!-- LE SAVIEZ-VOUS ? -->
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-blue-700 flex items-center mb-1">
+                        <span class="mr-2 text-2xl">💡</span> Le Saviez-vous? <span class="text-sm font-normal text-blue-500 ml-2 italic">par Alice Dulos, TMA</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Saviez-vous que la courge Little Jack est étonnamment riche en **fibres alimentaires**? Ces fibres ne font pas que faciliter la digestion, elles contribuent aussi à la sensation de **satiété**, ce qui en fait un excellent allié pour la gestion du poids durant l'automne.
+                    </p>
+                </div>
+
             </div>
             
-            <!-- Cadre des Temps - Prend 40% sur desktop (moins étendu) -->
-            <div id="recipe-times" class="md:w-2/5 p-4 bg-green-50 rounded-lg shadow-inner border border-green-200 md:self-center">
-                <h3 class="text-xl font-bold text-green-700 mb-3 text-center">⏱ Temps Total</h3>
-                <div class="grid time-card-grid grid-cols-3 gap-3 text-center">
+            <!-- CARTE DES TEMPS (Visuels Améliorés) -->
+            <!-- Largeur ajustée à md:w-1/3 pour être plus petit et proportionnel -->
+            <div id="recipe-times" class="md:w-1/3 p-4 bg-orange-50 rounded-lg shadow-inner border border-orange-200">
+                <h3 class="text-xl font-bold text-orange-700 mb-3 text-center">⏱ Temps Total</h3>
+                <div class="grid grid-cols-3 gap-3 text-center">
                     <div>
-                        <p class="text-3xl text-green-600 mb-1">⏳</p>
-                        <p class="text-2xl font-bold text-green-600" id="prep-time-display">10 min</p>
-                        <p class="text-sm text-gray-500">Préparation</p>
+                        <p class="text-3xl text-orange-600 mb-1">⏳</p>
+                        <p class="text-xl font-bold text-orange-600" id="prep-time-display">25 min</p>
+                        <p class="text-xs text-gray-500">Préparation</p>
                     </div>
                     <div>
-                        <p class="text-3xl text-green-600 mb-1">🔥</p>
-                        <p class="text-2xl font-bold text-green-600" id="cook-time-display">15 min</p>
-                        <p class="text-sm text-gray-500">Cuisson</p>
+                        <p class="text-3xl text-orange-600 mb-1">🔥</p>
+                        <p class="text-xl font-bold text-orange-600" id="cook-time-display">35 min</p>
+                        <p class="text-xs text-gray-500">Cuisson</p>
                     </div>
-                    <div class="col-span-full md:col-span-1 border-t md:border-t-0 md:border-l border-green-200 pt-3 md:pt-0">
-                        <p class="text-3xl text-green-700 mb-1">⏱</p>
-                        <p class="text-2xl font-bold text-green-700" id="total-time-display">25 min</p>
-                        <p class="text-sm text-gray-500">Total</p>
+                    <div>
+                        <p class="text-3xl text-orange-700 mb-1">⏱</p>
+                        <p class="text-xl font-extrabold text-orange-700" id="total-time-display">60 min</p>
+                        <p class="text-xs text-gray-500">Total</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PORTIONS & GRAPHIQUE -->
+        <!-- SÉLECTEUR DE PORTIONS ET GRAPHIQUE -->
         <section class="mb-10 p-6 bg-gray-50 rounded-xl">
             <h2 class="text-2xl font-bold text-stone-700 mb-4">Portions & Visualisation</h2>
             
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <!-- Portions Input -->
-                <div class="md:w-1/2 w-full"> 
+                <!-- SÉLECTEUR DE PORTIONS (Visuel Amélioré) -->
+                <div class="md:w-1/2 w-full">
                     <label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center">
                         <span class="text-3xl mr-2">👥</span> Choisir le nombre de portions :
                     </label>
-                    <input type="number" id="portions" value="2" min="1" max="8" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-green-500 focus:border-green-500 shadow-md">
+                    <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md">
                     <p class="text-sm text-gray-500 mt-2">Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.</p>
                 </div>
 
-                <!-- Time Chart -->
+                <!-- GRAPHIQUE DES TEMPS -->
                 <div class="md:w-1/2 w-full chart-container">
                     <canvas id="timeChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <!-- CONTENU (ONGLETS) -->
+        <!-- SECTION PRINCIPALE (ONGLETS) -->
         <section>
-            <!-- Boutons d'onglet -->
+            <!-- BARRE D'ONGLETS -->
             <div class="flex border-b border-gray-200 mb-6">
-                <button id="tab-ingredients" class="tab-button text-lg text-gray-500">Ingrédients</button>
-                <button id="tab-preparation" class="tab-button text-lg text-gray-500 active-tab">Préparation</button>
+                <button id="tab-ingredients" class="tab-button py-3 px-6 text-lg text-gray-500 active-tab">Ingrédients</button>
+                <button id="tab-preparation" class="tab-button py-3 px-6 text-lg text-gray-500">Préparation</button>
             </div>
 
-            <!-- Contenu Ingrédients -->
-            <div id="content-ingredients" class="tab-content hidden">
-                <ul id="ingredients-list" class="space-y-3">
-                </ul>
+            <!-- CONTENU DES ONGLETS -->
+            <div id="content-ingredients" class="tab-content">
+                <ul id="ingredients-list" class="space-y-4"></ul>
             </div>
 
-            <!-- Contenu Préparation -->
-            <div id="content-preparation" class="tab-content">
-                <ol id="preparation-list" class="space-y-5">
-                </ol>
+            <div id="content-preparation" class="tab-content hidden">
+                <ol id="preparation-list" class="space-y-4"></ol>
             </div>
         </section>
 
     </div>
-
-    <!-- Bouton de retour (fixe) -->
-    <div class="fixed bottom-4 left-4 z-50">
-        <a href="index.html" id="back-link" class="inline-flex items-center px-4 py-3 bg-white text-gray-700 font-bold rounded-full shadow-2xl transition duration-300 ease-in-out hover:bg-green-600 hover:text-white transform hover:scale-105">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path></svg>
-            <span class="ml-2 hidden sm:inline">Retour aux recettes</span>
-            <span class="ml-2 inline sm:hidden">Retour</span>
-        </a>
-    </div>
+    
+    <!-- Bouton de Retour aux recettes (style de l'autre recette) -->
+    <a href="index.html" class="return-button">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Retour aux recettes
+    </a>
 
     <script>
         const portionsInput = document.getElementById('portions');
@@ -278,250 +203,266 @@
         const prepTimeDisplay = document.getElementById('prep-time-display');
         const cookTimeDisplay = document.getElementById('cook-time-display');
         const totalTimeDisplay = document.getElementById('total-time-display');
-        const difficultyIndicator = document.getElementById('difficulty-indicator');
-        
-        let timeChart = null; 
-        
+
+        let timeChart = null;
+
         // --- DONNÉES DE LA RECETTE ---
-        const BASE_PORTIONS = 2; // Recette de base pour 2 personnes
-        const BASE_PREP_TIME = 10; // min
-        const BASE_COOK_TIME = 15; // min
-        // Niveau de difficulté mis à jour à 2/5 (selon l'image "Facile")
-        const DIFFICULTY_LEVEL = 2; 
-        const MAX_DIFFICULTY = 5; // Total de 5 points pour la difficulté
+        const BASE_PORTIONS = 4;
+        const BASE_PREP_TIME = 25; // min
+        const BASE_COOK_TIME = 35; // min
+        const DIFFICULTY_LEVEL = 2; // Niveau 2 sur 5 (Facile/Abordable)
 
         const recipeData = {
             ingredients: [
-                { category: "Fruits", name: "Pommes (variété ferme : Gala, Reinette, Granny)", baseAmount: 2, unit: "grosses" },
-                { category: "Assaisonnement", name: "Cannelle en poudre", baseAmount: 0.5, unit: "cc" },
-                { category: "Assaisonnement", name: "Extrait de vanille", baseAmount: 5, unit: "ml" },
-                { category: "Liquide", name: "Eau", baseAmount: 30, unit: "ml" },
-                // Modification: Remplacement du sucre/édulcorant par du miel/sirop
-                { category: "Optionnel", name: "Miel ou Sirop d'érable (pour le goût et la caramélisation, selon le goût)", baseAmount: 0.5, unit: "cs" }
+                { category: "Légumes et Fruits", name: "Courges Little Jack (environ 350g ch.)", baseAmount: 4, unit: "unités" },
+                { category: "Légumes et Fruits", name: "Oignon jaune haché finement (ou échalote pour les petites portions)", baseAmount: 1, unit: "petit" },
+                { category: "Légumes et Fruits", name: "Gousses d'ail hachées", baseAmount: 2, unit: "unités" },
+                { category: "Riz", name: "Riz Arborio ou Carnaroli", baseAmount: 300, unit: "g" },
+                { category: "Liquides", name: "Bouillon de légumes chaud", baseAmount: 1.2, unit: "L" },
+                { category: "Gras et Fromage", name: "Huile d'olive (pour cuisson et crémage)", baseAmount: 3, unit: "cs" },
+                { category: "Gras et Fromage", name: "Camembert coupé en morceaux", baseAmount: 125, unit: "g" },
+                { category: "Assaisonnement", name: "Vinaigre de cidre ou jus de citron (pour déglaçage)", baseAmount: 15, unit: "ml" },
+                { category: "Assaisonnement", name: "Noix de muscade fraîchement râpée", baseAmount: 0.5, unit: "cc" },
+                { category: "Assaisonnement", name: "Sel et poivre noir", baseAmount: 1, unit: "selon goût" }
             ],
-            // SUITE DE LA LOGIQUE DE PRÉPARATION (qui était coupée)
             preparation: [
-                { step: 1, category: "Préparation", text: "<b>Préparer les pommes :</b> Lavez, épluchez et épépinez les pommes. Coupez-les en dés ou en quartiers réguliers (environ 1.5 cm d'épaisseur) pour assurer une cuisson uniforme." },
-                { step: 2, category: "Cuisson", text: "<b>Cuisson 'sans gras' :</b> Dans une poêle antiadhésive à feu moyen-fort, versez l'eau. Ajoutez immédiatement les morceaux de pommes, la cannelle et la vanille. Si vous utilisez du miel/sirop, ajoutez-le maintenant." },
-                { step: 3, category: "Cuisson", text: "<b>Caramélisation :</b> Couvrez la poêle et laissez cuire pendant 5 minutes. Les pommes vont devenir tendres et leur propre jus va se libérer. Retirez ensuite le couvercle et augmentez le feu à moyen-vif." },
-                { step: 4, category: "Finition", text: "<b>Dorage :</b> Laissez cuire à découvert pendant environ 10 minutes supplémentaires, en remuant fréquemment, jusqu'à ce que le liquide soit évaporé et que les pommes commencent à dorer et caraméliser légèrement. Si elles collent, baissez légèrement le feu et ajoutez une cuillère à soupe d'eau si nécessaire." },
-                { step: 5, category: "Service", text: "<b>Servir :</b> Retirez du feu et servez chaud ou tiède. Elles sont délicieuses natures ou accompagnées d'un yaourt végétal." }
+                { step: 1, category: "Courge", text: "<b>Préparer les courges :</b> Préchauffez le four à 180°C. Coupez le chapeau de chaque courge Little Jack. Évidez-les de leurs graines. Salez et poivrez l'intérieur. Enfournez les courges (avec les chapeaux à côté) pendant 30 minutes. Elles doivent être tendres mais tenir leur forme." },
+                { step: 2, category: "Risotto", text: "<b>Sauter l'oignon :</b> Dans une casserole, ajoutez 1 cs d'huile d'olive. Ajoutez l'oignon haché et faites-le suer 5 à 7 minutes. Ajoutez l'ail. Ajoutez le riz et faites-le nacrer pendant 1 minute jusqu'à ce qu'il devienne translucide sur les bords." },
+                { step: 3, category: "Risotto", text: "<b>Cuisson :</b> <em>(Alternative au vin)</em> Ajoutez le vinaigre de cidre ou le jus de citron au riz et laissez s'évaporer. Ajoutez ensuite une louche de bouillon chaud. Remuez jusqu'à absorption. Continuez d'ajouter le bouillon louche après louche pendant environ 15 à 18 minutes, jusqu'à ce que le riz soit 'al dente'." },
+                { step: 4, category: "Finition", text: "<b>Crémer et Farcissage :</b> Hors du feu, ajoutez 1 cs d'huile d'olive et le Camembert coupé en morceaux. Mélangez vigoureusement jusqu'à obtenir un risotto crémeux. Ajoutez la noix de muscade, sel et poivre. Farcissez généreusement chaque courge avec le risotto. Replacez le chapeau sur la courge et servez immédiatement." }
             ]
         };
 
-        // Fonction d'arrondi (pour gérer les décimales)
-        function formatAmount(amount) {
-            if (amount % 1 === 0) {
-                return amount;
+        /**
+         * Arrondit un nombre à la demi-unité la plus proche (0.5, 1, 1.5, etc.)
+         * Utilisé pour les ingrédients unitaires pour éviter les décimales confuses.
+         * @param {number} num
+         * @returns {number}
+         */
+        function roundToNearestHalf(num) {
+            return Math.round(num * 2) / 2;
+        }
+
+        function formatAmount(amount, unit) {
+            // Unités de masse/volume (g, L, ml, cs, cc) : précision d'un décimal
+            if (["L", "ml", "g", "cc", "cs"].includes(unit)) {
+                // Utilisation de toLocaleString pour la virgule comme séparateur décimal en français
+                return amount.toFixed(1).replace('.', ',').replace(',0', '') + ' ' + unit;
             }
-            // Arrondir à la décimale la plus proche ou conserver les fractions courantes
-            if (amount === 0.25) return '1/4';
-            if (amount === 0.5) return '1/2';
-            if (amount === 0.75) return '3/4';
             
-            return Math.round(amount * 10) / 10;
-        }
+            // Ingrédients "selon goût"
+            if (unit === "selon goût") {
+                return "selon goût";
+            }
 
-        // --- GESTION DES QUANTITÉS ET DE L'AFFICHAGE DES INGRÉDIENTS ---
-        function renderIngredients(currentPortions) {
-            ingredientsList.innerHTML = '';
-            const factor = currentPortions / BASE_PORTIONS;
-
-            // Utilisation d'un Map pour regrouper les ingrédients par catégorie
-            const groupedIngredients = new Map();
-            recipeData.ingredients.forEach(ing => {
-                const category = ing.category;
-                if (!groupedIngredients.has(category)) {
-                    groupedIngredients.set(category, []);
+            // Ingrédients comptables (unités, petit) : arrondir à la demi-unité pour la lisibilité
+            if (["unités", "petit"].includes(unit)) {
+                const roundedAmount = roundToNearestHalf(amount);
+                
+                // Afficher l'entier si c'est un entier (ex: 4)
+                if (roundedAmount % 1 === 0) {
+                    return roundedAmount.toFixed(0) + ' ' + unit;
+                } 
+                // Afficher avec la décimale si c'est une demi-unité (ex: 1.5)
+                else {
+                    // Utilisation de la virgule pour le format français
+                    return roundedAmount.toFixed(1).replace('.', ',') + ' ' + unit;
                 }
-                groupedIngredients.get(category).push(ing);
-            });
+            }
+            
+            // Par défaut, retourner le montant arrondi à l'entier
+            return amount.toFixed(0) + ' ' + unit;
+        }
 
-            groupedIngredients.forEach((ingredients, category) => {
-                // Ajouter le titre de catégorie
-                const categoryHeader = document.createElement('li');
-                categoryHeader.className = 'text-lg font-bold text-stone-700 mt-4 mb-2 border-b border-green-200';
-                categoryHeader.textContent = category;
-                ingredientsList.appendChild(categoryHeader);
+        function renderIngredients(factor) {
+            ingredientsList.innerHTML = '';
+            let currentCategory = "";
 
-                // Ajouter les ingrédients
-                ingredients.forEach(ing => {
-                    const listItem = document.createElement('li');
-                    
-                    // Calcul de la quantité ajustée
-                    const adjustedAmount = formatAmount(ing.baseAmount * factor);
-                    const amountText = adjustedAmount > 0 ? adjustedAmount : '';
-                    const unitText = amountText ? ing.unit : '';
+            recipeData.ingredients.forEach(item => {
+                if (item.category !== currentCategory) {
+                    currentCategory = item.category;
+                    const header = document.createElement('h3');
+                    header.className = 'text-lg font-bold text-stone-700 mt-4 mb-2 border-b border-orange-100 pb-1';
+                    header.textContent = item.category;
+                    ingredientsList.appendChild(header);
+                }
 
-                    listItem.className = 'flex items-start text-gray-700';
-                    listItem.innerHTML = `
-                        <span class="mr-2 text-green-500 font-extrabold text-xl">•</span>
-                        <div class="flex flex-col">
-                            <span class="font-semibold">${amountText} ${unitText}</span>
-                            <span class="text-sm text-gray-600">${ing.name}</span>
-                        </div>
-                    `;
-                    ingredientsList.appendChild(listItem);
-                });
+                const scaledAmount = item.baseAmount * factor;
+
+                const listItem = document.createElement('li');
+                // Ajout de la classe 'ingredient-item' pour le survol
+                listItem.className = 'ingredient-item flex justify-between items-center p-3 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-lg';
+                
+                const amountText = (item.unit === "selon goût") 
+                    ? item.unit 
+                    : formatAmount(scaledAmount, item.unit);
+
+                listItem.innerHTML = `
+                    <span class="text-gray-700">${item.name}</span>
+                    <span class="font-semibold text-orange-600">${amountText}</span>
+                `;
+                ingredientsList.appendChild(listItem);
             });
         }
 
-        // --- GESTION DES ÉTAPES DE PRÉPARATION (avec cases à cocher) ---
         function renderPreparation() {
             preparationList.innerHTML = '';
             recipeData.preparation.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.className = 'relative p-4 border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition duration-200';
+                listItem.className = 'flex items-start p-4 bg-white rounded-xl shadow-md border border-gray-100';
                 
-                // Utilisation d'une checkbox cachée et d'un label stylisé
                 listItem.innerHTML = `
-                    <input type="checkbox" id="step-${item.step}" class="step-checkbox">
-                    <label for="step-${item.step}" class="step-label flex justify-between items-start cursor-pointer">
-                        <!-- Texte de l'étape -->
-                        <div class="flex-1 mr-4">
-                            <span class="text-xl font-bold text-green-700 mr-2">${item.step}.</span>
-                            <span class="step-text text-gray-800" style="line-height: 1.5;">${item.text}</span>
-                        </div>
-                        
-                        <!-- Indicateur de coche stylisé (cercle à droite) -->
-                        <div class="w-7 h-7 flex items-center justify-center border-2 border-gray-400 rounded-full transition duration-300 flex-shrink-0 mt-1">
-                            <!-- SVG du V (initialement transparent) -->
-                            <svg class="w-4 h-4 text-white opacity-0 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                    </label>
+                    <input type="checkbox" class="step-checkbox mt-1.5 mr-4 accent-orange-500 min-w-4 min-h-4">
+                    <div class="step-text flex-grow">
+                        <span class="font-bold text-orange-600 mr-2">${item.step}.</span>
+                        <span class="text-gray-700">${item.text}</span>
+                    </div>
                 `;
                 preparationList.appendChild(listItem);
             });
         }
 
-        // --- GESTION DU GRAPHIQUE DE TEMPS ---
-        function initChart() {
+        function updateTimes(newPortions) {
+            // La formule exponentielle est conservée pour simuler une augmentation marginale du temps de prép.
+            const newPrepTime = Math.round(BASE_PREP_TIME * Math.pow(newPortions / BASE_PORTIONS, 0.1)); 
+            
+            // Le temps de cuisson (au four) est souvent fixe 
+            const newCookTime = BASE_COOK_TIME; 
+            const newTotalTime = newPrepTime + newCookTime;
+
+            prepTimeDisplay.textContent = `${newPrepTime} min`;
+            cookTimeDisplay.textContent = `${newCookTime} min`;
+            totalTimeDisplay.textContent = `${newTotalTime} min`;
+            
+            updateTimeChart(newPrepTime, newCookTime);
+        }
+
+        function initTimeChart(prep, cook) {
             const ctx = document.getElementById('timeChart').getContext('2d');
-            if (timeChart) {
-                timeChart.destroy(); // Détruit l'instance précédente si elle existe
-            }
             timeChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Préparation', 'Cuisson'],
                     datasets: [{
-                        data: [BASE_PREP_TIME, BASE_COOK_TIME],
-                        backgroundColor: [
-                            '#34D399', // Vert clair (Préparation)
-                            '#059669', // Vert foncé (Cuisson)
-                        ],
-                        hoverOffset: 10,
-                        borderWidth: 0,
+                        data: [prep, cook],
+                        backgroundColor: ['#FDBA74', '#EA580C'], // Orange clair et foncé
+                        hoverOffset: 8, // Augmenté pour un meilleur effet de survol
+                        borderColor: '#ffffff',
+                        borderWidth: 3
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // Permet au chart-container de contrôler la taille
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            position: 'bottom',
+                        legend: { 
+                            position: 'top',
                             labels: {
-                                usePointStyle: true,
-                                padding: 10,
                                 font: {
                                     family: 'Inter',
                                     size: 14
                                 }
                             }
                         },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        label += context.parsed + ' min';
-                                    }
-                                    return label;
-                                }
-                            }
+                        tooltip: { 
+                            callbacks: { 
+                                label: (context) => `${context.label}: ${context.raw} min` 
+                            } 
                         }
-                    },
-                    cutout: '70%', // Épaisseur de l'anneau
+                    }
                 }
             });
         }
 
-        // --- GESTION DE LA DIFFICULTÉ (MIS À JOUR) ---
+        function updateTimeChart(prep, cook) {
+            if (timeChart) {
+                timeChart.data.datasets[0].data = [prep, cook];
+                timeChart.update();
+            }
+        }
+
+        // Rendu de l'indicateur de difficulté (utilise DIFFICULTY_LEVEL = 2)
         function renderDifficulty() {
-            const level = DIFFICULTY_LEVEL; // Vaut 2 (Facile)
-            const total = MAX_DIFFICULTY; // Vaut 5
-            difficultyIndicator.innerHTML = '';
+            const indicator = document.getElementById('difficulty-indicator');
+            const maxLevel = 5;
             
-            // 1. Afficher les points remplis (selon le niveau)
-            for (let i = 0; i < level; i++) {
-                const dot = document.createElement('span');
-                dot.className = `difficulty-dot mr-1`; // Point rempli (Orange)
-                difficultyIndicator.appendChild(dot);
+            indicator.innerHTML = '';
+            for (let i = 1; i <= maxLevel; i++) {
+                const icon = document.createElement('span');
+                
+                const isFilled = i <= DIFFICULTY_LEVEL;
+                
+                // Utilisation de cercles (ronds pleins/ronds vides)
+                icon.className = `h-4 w-4 rounded-full transition-all duration-300 transform scale-100 block`; 
+
+                if (isFilled) {
+                    // Cercle plein
+                    icon.classList.add('bg-orange-500', 'shadow-md');
+                } else {
+                    // Cercle vide (bordure)
+                    icon.classList.add('border-2', 'border-orange-300'); 
+                }
+
+                indicator.appendChild(icon);
             }
+        }
+
+
+        // --- GESTION DES ÉVÉNEMENTS ---
+
+        function handlePortionChange() {
+            let newPortions = parseInt(portionsInput.value, 10);
             
-            // 2. Afficher les points vides (total - niveau)
-            for (let i = level; i < total; i++) {
-                const dot = document.createElement('span');
-                dot.className = `difficulty-dot-empty mr-1`; // Point vide (Pêche)
-                difficultyIndicator.appendChild(dot);
+            // Assurer que les portions restent dans les limites (1 à 12)
+            if (newPortions < 1 || isNaN(newPortions)) {
+                newPortions = 1;
+                portionsInput.value = 1;
+            } else if (newPortions > 12) {
+                newPortions = 12;
+                portionsInput.value = 12;
             }
+
+            const factor = newPortions / BASE_PORTIONS;
+
+            renderIngredients(factor);
+            updateTimes(newPortions);
         }
 
-        // --- GESTION DES ONGLET (Tabs) ---
-        function setupTabs() {
-            const tabs = [
-                { buttonId: 'tab-ingredients', contentId: 'content-ingredients' },
-                { buttonId: 'tab-preparation', contentId: 'content-preparation' },
-            ];
+        function handleTabClick(event) {
+            // Get all tab buttons and content panels
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
 
-            const tabButtons = tabs.map(tab => document.getElementById(tab.buttonId));
-            const tabContents = tabs.map(tab => document.getElementById(tab.contentId));
+            // Deactivate all tabs and hide all content
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+            contents.forEach(content => content.classList.add('hidden'));
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Masquer tous les contenus et désactiver tous les boutons
-                    tabContents.forEach(content => content.classList.add('hidden'));
-                    tabButtons.forEach(btn => btn.classList.remove('active-tab', 'text-gray-800'));
-                    
-                    // Activer le contenu et le bouton cliqué
-                    const targetContentId = tabs.find(tab => tab.buttonId === button.id).contentId;
-                    document.getElementById(targetContentId).classList.remove('hidden');
-                    button.classList.add('active-tab', 'text-gray-800');
-                });
-            });
-
-            // Initialiser sur l'onglet "Préparation" par défaut
-            document.getElementById('content-ingredients').classList.add('hidden');
-            document.getElementById('tab-ingredients').classList.remove('active-tab', 'text-gray-800');
-            document.getElementById('tab-preparation').classList.add('active-tab', 'text-gray-800');
+            // Activate the clicked tab and show the corresponding content
+            event.target.classList.add('active-tab');
+            const targetId = event.target.id.replace('tab-', 'content-');
+            document.getElementById(targetId).classList.remove('hidden');
         }
 
-        // --- GESTION DES ÉVÉNEMENTS & INITIALISATION ---
+        // --- INITIALISATION ---
 
-        function updateRecipe() {
-            const currentPortions = parseInt(portionsInput.value) || BASE_PORTIONS;
-            // Assurer que les portions sont dans la plage min/max
-            if (currentPortions < portionsInput.min || currentPortions > portionsInput.max) return;
-            
-            renderIngredients(currentPortions);
-        }
-
-        // Événement sur changement de portions
-        portionsInput.addEventListener('input', updateRecipe);
-
-        // Initialisation à l'ouverture de la page
         document.addEventListener('DOMContentLoaded', () => {
-            renderDifficulty();
+            // 1. Initialiser le graphique des temps
+            initTimeChart(BASE_PREP_TIME, BASE_COOK_TIME);
+
+            // 2. Rendre les onglets initiaux
+            renderIngredients(1); // Rendu initial pour 4 portions
             renderPreparation();
-            initChart();
-            setupTabs();
-            // Lancer l'update initial des quantités pour 2 portions
-            updateRecipe(); 
+            updateTimes(BASE_PORTIONS); // Mise à jour des temps initiaux
+
+            // 3. Rendre l'indicateur de difficulté
+            renderDifficulty(); 
+
+            // 4. Ajouter les écouteurs d'événements
+            portionsInput.addEventListener('input', handlePortionChange);
+            // Get all tab buttons and attach handler
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', handleTabClick);
+            });
         });
     </script>
 </body>
