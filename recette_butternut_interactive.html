@@ -2,129 +2,69 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Butternut rôti aux Épices par Yaté DOUKANSY, 3PMT</title>
-
-  <!-- Tailwind CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Butternut rôti aux Épices - Yaté DOUKANSY</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
-
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f7f7;
-    }
-    .tab-button {
-      transition: all 0.2s;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-    .active-tab {
-      border-bottom: 3px solid #F97316;
-      font-weight: 700;
-      color: #F97316;
-    }
-    .chart-container {
-      position: relative;
-      width: 100%;
-      height: 150px;
-    }
-    .step-checkbox:checked + .step-text {
-      text-decoration: line-through;
-      color: #9CA3AF;
-    }
-    .step-text {
-      transition: color 0.3s, text-decoration 0.3s;
-    }
-    .step-checkbox {
-      transform: scale(1.2);
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+    .tab-button { transition: all 0.2s; padding: 0.75rem 1.5rem; cursor: pointer; }
+    .active-tab { border-bottom: 3px solid #F97316; font-weight: 700; color: #F97316; }
+    .chart-container { position: relative; width: 100%; height: 150px; }
+    .step-checkbox:checked + .step-text { text-decoration: line-through; color: #9CA3AF; }
+    .step-text { transition: color 0.3s, text-decoration 0.3s; }
+    .step-checkbox { transform: scale(1.2); }
   </style>
 </head>
 <body class="p-4 bg-gray-50">
 
-  <!-- Bouton Retour visuel et moderne -->
-  <div class="mb-6">
-    <a href="javascript:history.back()"
-       class="inline-flex items-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-800 font-semibold py-2 px-4 rounded-full shadow-sm transition duration-200 ease-in-out">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 19l-7-7 7-7" />
-      </svg>
-      Retour
-    </a>
-  </div>
-
   <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
 
-    <p class="text-sm font-semibold text-gray-500 italic text-left mb-2">Recette de l'automne</p>
+    <!-- Bouton Retour Accueil -->
+    <div class="mb-6">
+      <a href="/" class="inline-flex items-center text-orange-600 hover:text-orange-800 font-semibold text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a1 1 0 01-.707-.293l-7-7a1 1 0 011.414-1.414L9 15.586V3a1 1 0 112 0v12.586l5.293-5.293a1 1 0 111.414 1.414l-7 7A1 1 0 0110 18z" clip-rule="evenodd" />
+        </svg>
+        Retour à l’accueil
+      </a>
+    </div>
 
     <header class="text-center mb-10 pb-6 border-b-4 border-orange-100">
       <h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug flex items-center justify-center flex-wrap">
-        <span class="text-4xl md:text-5xl mr-2">🧡</span>
-        BUTTERNUT RÔTI AUX ÉPICES
-        <span class="text-4xl md:text-5xl ml-2">🧡</span>
+        <span class="text-4xl mr-2">🧡</span> BUTTERNUT RÔTI AUX ÉPICES <span class="text-4xl ml-2">🧡</span>
       </h1>
-      <p class="text-xl md:text-2xl font-semibold text-green-600 mt-1 italic">par Yaté DOUKANSY, 3PMT</p>
+      <p class="text-xl font-semibold text-green-600 mt-1 italic">par Yaté DOUKANSY, 3PMT</p>
     </header>
 
     <section class="mb-8 flex flex-col md:flex-row gap-6">
       <div class="md:w-1/2">
-        <h2 class="text-2xl font-bold text-stone-700 mb-3 flex items-center">Recette Végétale et Gourmande 🍁</h2>
+        <h2 class="text-2xl font-bold text-stone-700 mb-3">Recette Végétale et Gourmande 🍁</h2>
         <p class="text-gray-600 leading-relaxed">
-          Une manière simple et délicieuse de cuisiner le Butternut. La combinaison du <strong>miel (ou sirop d'érable)</strong> et des <strong>épices</strong> (cannelle, muscade) apporte une saveur sucrée-salée parfaite pour l'automne. Idéal en accompagnement ou en plat végétarien léger.
+          Une manière simple et délicieuse de cuisiner le Butternut. Le miel (ou sirop d'érable) et les épices apportent une saveur sucrée-salée parfaite.
         </p>
 
-        <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm">
-          <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">
-            <span class="mr-2">🧑‍🍳</span> Niveau de Difficulté
-          </h3>
+        <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+          <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">🧑‍🍳 Niveau de Difficulté</h3>
           <div id="difficulty-indicator" class="flex items-center gap-2 mt-2"></div>
-        </div>
-
-        <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 shadow-sm">
-          <h3 class="text-xl font-bold text-green-700 flex items-center mb-1">
-            <span class="mr-2">💡</span> Le saviez-vous ?
-            <span class="text-sm font-normal italic ml-2">(par Alice Dulos, TMA)</span>
-          </h3>
-          <p class="text-sm text-gray-600">
-            La couleur orange vif du butternut est due à sa richesse exceptionnelle en <b class="text-green-800">bêta-carotène</b>. Une seule portion peut couvrir <b class="text-green-800">plus de 100%</b> de vos besoins quotidiens en <b class="text-green-800">Vitamine A</b>, essentielle pour la vision et le système immunitaire.
-          </p>
-        </div>
-
-        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200 shadow-sm">
-          <h3 class="text-xl font-bold text-amber-700 flex items-center mb-1">
-            <span class="mr-2">♻️</span> Astuce Zéro Gaspi : Les Graines !
-          </h3>
-          <p class="text-sm text-gray-600">
-            Ne jetez jamais les graines de courge ! Elles sont excellentes rôties. Après les avoir bien nettoyées, mélangez-les avec un peu d'huile d'olive, de sel, et une pincée de paprika. Faites-les griller séparément au four pendant <strong>10 à 15 minutes</strong>.
-          </p>
         </div>
       </div>
 
-      <div id="recipe-times" class="md:w-1/2 p-4 bg-orange-50 rounded-xl shadow-inner border border-orange-200">
+      <div class="md:w-1/2 p-4 bg-orange-50 rounded-xl border border-orange-200">
         <h3 class="text-xl font-bold text-orange-700 mb-3 text-center">⏱ Temps de la Recette</h3>
-
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-          <div class="p-3 bg-white rounded-lg shadow-sm border border-orange-100">
+          <div class="p-3 bg-white rounded-lg border">
             <p class="text-3xl text-orange-600 mb-1">⏳</p>
             <p class="text-xl font-bold text-orange-600" id="prep-time-display">15 min</p>
             <p class="text-xs text-gray-500">Préparation</p>
           </div>
-          <div class="p-3 bg-white rounded-lg shadow-sm border border-orange-100">
+          <div class="p-3 bg-white rounded-lg border">
             <p class="text-3xl text-orange-600 mb-1">🔥</p>
             <p class="text-xl font-bold text-orange-600" id="cook-time-display">35 min</p>
             <p class="text-xs text-gray-500">Cuisson</p>
           </div>
-          <div class="col-span-2 md:col-span-1 p-3 bg-orange-200 rounded-lg shadow-md border-2 border-orange-300">
+          <div class="col-span-2 md:col-span-1 p-3 bg-orange-200 rounded-lg border-2 border-orange-300">
             <p class="text-3xl text-orange-800 mb-1">⏱</p>
             <p class="text-2xl font-extrabold text-orange-800" id="total-time-display">50 min</p>
             <p class="text-sm text-gray-700">Total estimé</p>
@@ -137,11 +77,9 @@
       <h2 class="text-2xl font-bold text-stone-700 mb-4">Portions & Visualisation</h2>
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="md:w-1/2 w-full">
-          <label for="portions" class="block text-lg font-medium text-gray-700 mb-2 flex items-center">
-            <span class="text-3xl mr-2">👥</span> Choisir le nombre de portions :
-          </label>
-          <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border border-gray-300 rounded-lg text-2xl text-center focus:ring-orange-500 focus:border-orange-500 shadow-md" />
-          <p class="text-sm text-gray-500 mt-2">Les quantités seront automatiquement mises à jour dans l'onglet 'Ingrédients'.</p>
+          <label for="portions" class="block text-lg font-medium text-gray-700 mb-2">👥 Choisir le nombre de portions :</label>
+          <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border rounded-lg text-2xl text-center shadow-md" />
+          <p class="text-sm text-gray-500 mt-2">Les quantités seront mises à jour automatiquement.</p>
         </div>
         <div class="md:w-1/2 w-full chart-container">
           <canvas id="timeChart"></canvas>
@@ -151,22 +89,52 @@
 
     <section>
       <div class="flex border-b border-gray-200 mb-6">
-        <button id="tab-ingredients" class="tab-button text-lg text-gray-500">Ingrédients</button>
-        <button id="tab-preparation" class="tab-button text-lg text-gray-500 active-tab">Préparation</button>
+        <button id="tab-ingredients" class="tab-button active-tab text-lg text-gray-700">Ingrédients</button>
+        <button id="tab-preparation" class="tab-button text-lg text-gray-500">Préparation</button>
       </div>
 
-      <div id="content-ingredients" class="tab-content hidden">
+      <div id="content-ingredients" class="tab-content">
         <ul id="ingredients-list" class="space-y-4"></ul>
       </div>
 
-      <div id="content-preparation" class="tab-content">
+      <div id="content-preparation" class="tab-content hidden">
         <ol id="preparation-list" class="space-y-4"></ol>
       </div>
     </section>
-
   </div>
 
-  <script type="module">
+  <script>
+    // Données de base de la recette
+    const BASE_PORTIONS = 4;
+    const BASE_PREP_TIME = 15; // minutes
+    const BASE_COOK_TIME = 35; // minutes
+    const DIFFICULTY_LEVEL = 1; // de 1 à 5
+
+    // Données des ingrédients (quantités pour 4 portions)
+    const recipeData = {
+      ingredients: [
+        { category: "Légumes", name: "Courge Butternut (chair)", baseAmount: 1500, unit: "g" },
+        { category: "Gras et Sucré", name: "Huile d'olive", baseAmount: 4, unit: "cs" },
+        { category: "Gras et Sucré", name: "Miel ou Sirop d'érable", baseAmount: 2, unit: "cs" },
+        { category: "Épices", name: "Paprika doux", baseAmount: 1, unit: "cc" },
+        { category: "Épices", name: "Cumin moulu", baseAmount: 1, unit: "cc" },
+        { category: "Épices", name: "Gingembre moulu", baseAmount: 0.5, unit: "cc" },
+        { category: "Épices", name: "Cannelle moulue", baseAmount: 0.5, unit: "cc" },
+        { category: "Divers", name: "Sel", baseAmount: 1, unit: "cc" },
+        { category: "Divers", name: "Poivre noir moulu", baseAmount: 0.5, unit: "cc" }
+      ],
+      preparationSteps: [
+        "Préchauffez le four à 200°C (chaleur tournante).",
+        "Pelez et coupez la courge Butternut en cubes de taille moyenne.",
+        "Dans un grand bol, mélangez l'huile d'olive, le miel (ou sirop d'érable) et les épices.",
+        "Ajoutez les cubes de courge dans le bol et mélangez bien pour les enrober.",
+        "Disposez les cubes sur une plaque recouverte de papier cuisson en une seule couche.",
+        "Enfournez pendant 30 à 35 minutes, en remuant à mi-cuisson pour une coloration uniforme.",
+        "Sortez la courge du four, salez, poivrez selon votre goût et servez chaud."
+      ]
+    };
+
+    // Sélecteurs
     const portionsInput = document.getElementById('portions');
     const ingredientsList = document.getElementById('ingredients-list');
     const preparationList = document.getElementById('preparation-list');
@@ -174,147 +142,100 @@
     const cookTimeDisplay = document.getElementById('cook-time-display');
     const totalTimeDisplay = document.getElementById('total-time-display');
     const difficultyIndicator = document.getElementById('difficulty-indicator');
-    let timeChart = null;
 
-    const BASE_PORTIONS = 4;
-    const BASE_PREP_TIME = 15;
-    const BASE_COOK_TIME = 35;
-    const DIFFICULTY_LEVEL = 1;
+    const tabIngredientsBtn = document.getElementById('tab-ingredients');
+    const tabPreparationBtn = document.getElementById('tab-preparation');
+    const contentIngredients = document.getElementById('content-ingredients');
+    const contentPreparation = document.getElementById('content-preparation');
 
-    const recipeData = {
-      ingredients: [
-        { category: "Légumes et Fruits", name: "Courge Butternut (chair)", baseAmount: 1500, unit: "g" },
-        { category: "Gras et Sucré", name: "Huile d'olive", baseAmount: 4, unit: "cs" },
-        { category: "Gras et Sucré", name: "Miel liquide (ou Sirop d'érable)", baseAmount: 2, unit: "cs" },
-        { category: "Épices et Assaisonnement", name: "Mélange d'épices (curry doux ou paprika)", baseAmount: 1.5, unit: "cc" },
-        { category: "Épices et Assaisonnement", name: "Cannelle en poudre", baseAmount: 0.5, unit: "cc" },
-        { category: "Épices et Assaisonnement", name: "Sel fin", baseAmount: 1, unit: "cc" },
-        { category: "Épices et Assaisonnement", name: "Poivre noir fraîchement moulu", baseAmount: 0.5, unit: "cc" },
-        { category: "Garniture", name: "Graines de courge (pour garniture)", baseAmount: 2, unit: "cs" }
-      ],
-      preparation: [
-        { step: 1, category: "Préparation", text: "<b>Préchauffage et Préparation :</b> Préchauffez le four à 200°C. Pelez la courge Butternut, coupez-la en deux dans la longueur, retirez les graines. Coupez la chair en cubes." },
-        { step: 2, category: "Assaisonnement", text: "<b>Assaisonnement :</b> Dans un grand saladier, mélangez l'huile d'olive, le miel (ou sirop d'érable), le mélange d'épices, la cannelle, le sel et le poivre." },
-        { step: 3, category: "Cuisson", text: "<b>Enrobage et Rôtissage :</b> Mélangez les cubes avec l’assaisonnement. Étalez-les sur une plaque recouverte de papier sulfurisé. Enfournez pour 35 minutes." },
-        { step: 4, category: "Finition", text: "<b>Mélange et Service :</b> À mi-cuisson (15 min), remuez les cubes pour dorer uniformément. Sortez du four et parsemez des graines de courge grillées." }
-      ]
-    };
-
-    function formatAmount(amount, unit) {
-      if (unit === "selon goût") return unit;
-      const cleanDecimals = (num, fixed) => num.toFixed(fixed).replace(/\.0+$/, '');
-      if (unit === "g") {
-        if (amount >= 1000) {
-          return cleanDecimals(amount / 1000, 1) + " kg";
-        }
-        return cleanDecimals(amount, 0) + " g";
-      }
-      return cleanDecimals(amount, 2) + " " + unit;
-    }
-
-    function updateIngredients() {
-      const currentPortions = parseInt(portionsInput.value, 10);
-      const factor = currentPortions / BASE_PORTIONS;
-      ingredientsList.innerHTML = "";
-
-      const categories = {};
-      recipeData.ingredients.forEach(item => {
-        if (!categories[item.category]) {
-          categories[item.category] = [];
-        }
-        categories[item.category].push(item);
-      });
-
-      for (const category in categories) {
-        const categoryHeader = document.createElement('h3');
-        categoryHeader.className = 'text-xl font-bold text-orange-700 mt-6 mb-3 border-b border-orange-200 pb-1';
-        categoryHeader.textContent = category;
-        ingredientsList.appendChild(categoryHeader);
-
-        const categoryUl = document.createElement('ul');
-        categoryUl.className = 'space-y-3';
-        ingredientsList.appendChild(categoryUl);
-
-        categories[category].forEach(item => {
-          const li = document.createElement('li');
-          const calculated = item.baseAmount * factor;
-          const amountString = formatAmount(calculated, item.unit);
-          li.className = 'flex items-start text-gray-700 bg-white p-3 rounded-lg shadow-sm hover:bg-orange-50 transition duration-150 ease-in-out';
-          li.innerHTML = `
-            <input type="checkbox" class="step-checkbox mt-1 mr-3 h-5 w-5 text-orange-600 border-gray-300 rounded focus:ring-orange-500">
-            <span class="step-text flex-1">
-              <span class="font-bold text-orange-800">${amountString}</span> de ${item.name}
-            </span>
-          `;
-          categoryUl.appendChild(li);
-        });
+    // Affiche la difficulté en étoiles
+    function displayDifficulty(level) {
+      difficultyIndicator.innerHTML = '';
+      for(let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.textContent = i <= level ? '★' : '☆';
+        star.className = i <= level ? 'text-yellow-500 text-2xl' : 'text-gray-300 text-2xl';
+        difficultyIndicator.appendChild(star);
       }
     }
 
-    function displayPreparation() {
-      preparationList.innerHTML = "";
-      recipeData.preparation.forEach(stepItem => {
+    // Met à jour la liste des ingrédients selon le nombre de portions
+    function updateIngredients(portions) {
+      ingredientsList.innerHTML = '';
+
+      recipeData.ingredients.forEach(ing => {
+        const amount = (ing.baseAmount / BASE_PORTIONS) * portions;
+        const amountText = (amount % 1 !== 0) ? amount.toFixed(2) : amount.toFixed(0);
+
         const li = document.createElement('li');
-        li.className = 'flex items-start text-gray-700 bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out';
+        li.className = "flex justify-between bg-orange-50 border border-orange-200 rounded-lg p-3 shadow-sm";
         li.innerHTML = `
-          <div class="mr-3 flex-shrink-0">
-            <input type="checkbox" id="step-${stepItem.step}" class="step-checkbox mt-1 h-6 w-6 text-orange-600 border-gray-300 rounded-full focus:ring-orange-500">
-          </div>
-          <label for="step-${stepItem.step}" class="step-text flex-1 text-base leading-relaxed">
-            ${stepItem.text}
-          </label>
+          <span class="font-semibold">${ing.name}</span>
+          <span class="font-mono text-orange-700">${amountText} ${ing.unit}</span>
         `;
+        ingredientsList.appendChild(li);
+      });
+    }
+
+    // Affiche les étapes de préparation
+    function displayPreparationSteps() {
+      preparationList.innerHTML = '';
+      recipeData.preparationSteps.forEach((step, idx) => {
+        const li = document.createElement('li');
+        li.className = "flex items-start gap-3";
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `step-${idx}`;
+        checkbox.className = 'step-checkbox mt-1';
+
+        const label = document.createElement('label');
+        label.htmlFor = `step-${idx}`;
+        label.className = 'step-text cursor-pointer text-gray-800';
+        label.textContent = step;
+
+        li.appendChild(checkbox);
+        li.appendChild(label);
         preparationList.appendChild(li);
       });
     }
 
-    function updateTimesAndChart() {
-      const prepTime = BASE_PREP_TIME;
-      const cookTime = BASE_COOK_TIME;
-      const totalTime = prepTime + cookTime;
-      prepTimeDisplay.textContent = `${prepTime} min`;
-      cookTimeDisplay.textContent = `${cookTime} min`;
-      totalTimeDisplay.textContent = `${totalTime} min`;
+    // Met à jour les temps d'après le nombre de portions (simple exemple)
+    function updateTimes(portions) {
+      // Ici on laisse les temps fixes mais on pourrait ajuster selon portions
+      prepTimeDisplay.textContent = BASE_PREP_TIME + " min";
+      cookTimeDisplay.textContent = BASE_COOK_TIME + " min";
+      totalTimeDisplay.textContent = (BASE_PREP_TIME + BASE_COOK_TIME) + " min";
+    }
 
-      if (timeChart) {
-        timeChart.destroy();
-      }
+    // Initialise le graphique Doughnut (temps)
+    let timeChart = null;
+    function createTimeChart() {
       const ctx = document.getElementById('timeChart').getContext('2d');
+      if(timeChart) timeChart.destroy();
+
       timeChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           labels: ['Préparation', 'Cuisson'],
           datasets: [{
-            label: 'Temps de la recette',
-            data: [prepTime, cookTime],
-            backgroundColor: ['rgba(249, 115, 22, 0.8)', 'rgba(234, 88, 12, 0.8)'],
-            hoverOffset: 10,
-            borderWidth: 0
+            data: [BASE_PREP_TIME, BASE_COOK_TIME],
+            backgroundColor: ['#FB923C', '#F97316'],
+            hoverOffset: 20,
+            borderWidth: 2,
+            borderColor: '#fff',
           }]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
-          cutout: '70%',
           plugins: {
             legend: {
               position: 'bottom',
-              labels: {
-                padding: 10,
-                font: {
-                  size: 14,
-                  family: 'Inter, sans-serif'
-                }
-              }
+              labels: { font: { size: 14 }, color: '#444' }
             },
             tooltip: {
               callbacks: {
-                label: function(context) {
-                  let label = context.label || '';
-                  if (label) label += ': ';
-                  label += context.parsed + ' minutes';
-                  return label;
-                }
+                label: ctx => `${ctx.label}: ${ctx.parsed} min`
               }
             }
           }
@@ -322,39 +243,60 @@
       });
     }
 
-    function displayDifficulty() {
-      difficultyIndicator.innerHTML = '';
-      const max = 5;
-      for (let i = 1; i <= max; i++) {
-        const span = document.createElement('span');
-        const filled = i <= DIFFICULTY_LEVEL;
-        span.className = `w-5 h-5 rounded-full border-2 border-yellow-500 ${filled ? 'bg-yellow-500' : 'bg-white'}`;
-        span.title = filled ? 'Difficulté Facile' : 'Difficulté Supérieure';
-        difficultyIndicator.appendChild(span);
+    // Gestion des onglets
+    function switchTab(tab) {
+      if(tab === 'ingredients') {
+        tabIngredientsBtn.classList.add('active-tab');
+        tabIngredientsBtn.classList.remove('text-gray-500');
+        tabIngredientsBtn.classList.add('text-gray-700');
+
+        tabPreparationBtn.classList.remove('active-tab');
+        tabPreparationBtn.classList.remove('text-gray-700');
+        tabPreparationBtn.classList.add('text-gray-500');
+
+        contentIngredients.classList.remove('hidden');
+        contentPreparation.classList.add('hidden');
+      } else {
+        tabPreparationBtn.classList.add('active-tab');
+        tabPreparationBtn.classList.remove('text-gray-500');
+        tabPreparationBtn.classList.add('text-gray-700');
+
+        tabIngredientsBtn.classList.remove('active-tab');
+        tabIngredientsBtn.classList.remove('text-gray-700');
+        tabIngredientsBtn.classList.add('text-gray-500');
+
+        contentPreparation.classList.remove('hidden');
+        contentIngredients.classList.add('hidden');
       }
     }
 
-    function switchTab(activeTabId) {
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active-tab'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-      document.getElementById(`tab-${activeTabId}`).classList.add('active-tab');
-      document.getElementById(`content-${activeTabId}`).classList.remove('hidden');
-      if (activeTabId === 'ingredients') {
-        updateIngredients();
-      }
+    // Initialisation
+    function init() {
+      displayDifficulty(DIFFICULTY_LEVEL);
+      updateIngredients(BASE_PORTIONS);
+      displayPreparationSteps();
+      updateTimes(BASE_PORTIONS);
+      createTimeChart();
+
+      portionsInput.addEventListener('input', () => {
+        let val = parseInt(portionsInput.value);
+        if(isNaN(val) || val < 1) {
+          val = 1;
+          portionsInput.value = 1;
+        } else if(val > 12) {
+          val = 12;
+          portionsInput.value = 12;
+        }
+        updateIngredients(val);
+        updateTimes(val);
+      });
+
+      tabIngredientsBtn.addEventListener('click', () => switchTab('ingredients'));
+      tabPreparationBtn.addEventListener('click', () => switchTab('preparation'));
     }
 
-    portionsInput.addEventListener('input', updateIngredients);
-    document.getElementById('tab-ingredients').addEventListener('click', () => switchTab('ingredients'));
-    document.getElementById('tab-preparation').addEventListener('click', () => switchTab('preparation'));
-
-    document.addEventListener('DOMContentLoaded', () => {
-      displayDifficulty();
-      updateTimesAndChart();
-      displayPreparation();
-      updateIngredients();
-      switchTab('preparation');
-    });
+    init();
   </script>
+
 </body>
 </html>
