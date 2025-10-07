@@ -1,122 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Butternut rôti aux Épices - Yaté DOUKANSY</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
-    .tab-button { transition: all 0.2s; padding: 0.75rem 1.5rem; cursor: pointer; }
-    .active-tab { border-bottom: 3px solid #F97316; font-weight: 700; color: #F97316; }
-    .chart-container { position: relative; width: 100%; height: 150px; }
-    .step-checkbox:checked + .step-text { text-decoration: line-through; color: #9CA3AF; }
-    .step-text { transition: color 0.3s, text-decoration 0.3s; }
-    .step-checkbox { transform: scale(1.2); }
-  </style>
-</head>
-<body class="p-4 bg-gray-50">
-
-  <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 my-8">
-
-    <p class="text-xl font-extrabold text-amber-600 mb-6 border-b border-amber-100 pb-2">
-        🍂 Recette de l'Automne
-    </p>
-
-        <div class="mb-6">
-      <a href="index.html" class="inline-flex items-center text-orange-600 hover:text-orange-800 font-semibold text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10 18a1 1 0 01-.707-.293l-7-7a1 1 0 011.414-1.414L9 15.586V3a1 1 0 112 0v12.586l5.293-5.293a1 1 0 111.414 1.414l-7 7A1 1 0 0110 18z" clip-rule="evenodd" />
-        </svg>
-        Retour à l’accueil
-      </a>
-    </div>
-
-    <header class="text-center mb-10 pb-6 border-b-4 border-orange-100">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-orange-700 mb-3 leading-snug flex items-center justify-center flex-wrap">
-        <span class="text-4xl mr-2">🧡</span> BUTTERNUT RÔTI AUX ÉPICES <span class="text-4xl ml-2">🧡</span>
-      </h1>
-      <p class="text-xl font-semibold text-green-600 mt-1 italic">par Yaté DOUKANSY, 3PMT</p>
-    </header>
-
-    <section class="mb-8 flex flex-col md:flex-row gap-6">
-      <div class="md:w-1/2">
-        <h2 class="text-2xl font-bold text-stone-700 mb-3">Recette Végétale et Gourmande 🍁</h2>
-        <p class="text-gray-600 leading-relaxed">
-          Une manière simple et délicieuse de cuisiner le Butternut. Le miel (ou sirop d'érable) et les épices apportent une saveur sucrée-salée parfaite.
-        </p>
-
-        <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-          <h3 class="text-xl font-bold text-yellow-700 flex items-center mb-1">🧑‍🍳 Niveau de Difficulté</h3>
-          <div id="difficulty-indicator" class="flex items-center gap-2 mt-2"></div>
-        </div>
-      </div>
-
-      <div class="md:w-1/2 p-4 bg-orange-50 rounded-xl border border-orange-200">
-        <h3 class="text-xl font-bold text-orange-700 mb-3 text-center">⏱ Temps de la Recette</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-          <div class="p-3 bg-white rounded-lg border">
-            <p class="text-3xl text-orange-600 mb-1">⏳</p>
-            <p class="text-xl font-bold text-orange-600" id="prep-time-display">15 min</p>
-            <p class="text-xs text-gray-500">Préparation</p>
-            </div>
-          <div class="p-3 bg-white rounded-lg border">
-            <p class="text-3xl text-orange-600 mb-1">🔥</p>
-            <p class="text-xl font-bold text-orange-600" id="cook-time-display">35 min</p>
-            <p class="text-xs text-gray-500">Cuisson</p>
-          </div>
-          <div class="col-span-2 md:col-span-1 p-3 bg-orange-200 rounded-lg border-2 border-orange-300">
-            <p class="text-3xl text-orange-800 mb-1">⏱</p>
-            <p class="text-2xl font-extrabold text-orange-800" id="total-time-display">50 min</p>
-            <p class="text-sm text-gray-700">Total estimé</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mb-10 p-6 bg-gray-50 rounded-xl">
-      <h2 class="text-2xl font-bold text-stone-700 mb-4">Portions & Visualisation</h2>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="md:w-1/2 w-full">
-          <label for="portions" class="block text-lg font-medium text-gray-700 mb-2">👥 Choisir le nombre de portions :</label>
-          <input type="number" id="portions" value="4" min="1" max="12" class="w-full p-3 border rounded-lg text-2xl text-center shadow-md" />
-          <p class="text-sm text-gray-500 mt-2">Les quantités seront mises à jour automatiquement.</p>
-        </div>
-        <div class="md:w-1/2 w-full chart-container">
-          <canvas id="timeChart"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="flex border-b border-gray-200 mb-6">
-        <button id="tab-ingredients" class="tab-button active-tab text-lg text-gray-700">Ingrédients</button>
-        <button id="tab-preparation" class="tab-button text-lg text-gray-500">Préparation</button>
-      </div>
-
-      <div id="content-ingredients" class="tab-content">
-        <ul id="ingredients-list" class="space-y-4"></ul>
-      </div>
-
-      <div id="content-preparation" class="tab-content hidden">
-        <ol id="preparation-list" class="space-y-4"></ol>
-      </div>
-    </section>
-
-    <div class="mt-8 pt-4 border-t-2 border-orange-100 text-left">
-    <a href="index.html" class="inline-flex items-center text-orange-600 hover:text-orange-800 font-semibold text-sm">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 18a1 1 0 01-.707-.293l-7-7a1 1 0 011.414-1.414L9 15.586V3a1 1 0 112 0v12.586l5.293-5.293a1 1 0 111.414 1.414l-7 7A1 1 0 0110 18z" clip-rule="evenodd" />
-      </svg>
-      Retour aux Recettes
-    </a>
-  </div>
-  
-  </div>
-
-  <script>
+<script>
     // Données de base de la recette
     const BASE_PORTIONS = 4;
     const BASE_PREP_TIME = 15; // minutes
@@ -286,6 +168,7 @@
     // Initialisation
     function init() {
       displayDifficulty(DIFFICULTY_LEVEL);
+      // Cette ligne était manquante !
       updateIngredients(BASE_PORTIONS); 
       displayPreparationSteps();
       updateTimes(BASE_PORTIONS);
@@ -310,6 +193,3 @@
 
     init();
   </script>
-
-</body>
-</html>
